@@ -1,1 +1,34 @@
+<?= $this->doctype(); ?>
+<html>
+<head>
+
+<?
+
+echo $this->headMeta() . $this->headTitle('LighteningPacker') . $this->headStyle() . $this->headLink();
+
+?>
+
+</head>
+<body>
+<div class="container container_3">
+
+<div class="grid_3 full_logo">
+&nbsp;
+<p class="plotline">Fast as lightening</p>
+</div>
+
+<ul class="menu grid_3">
+<li><a href="<?= $this->baseUrl() . '/index/about'; ?>">About</a></li>
+<li><a href="<?= $this->baseUrl() . '/index/docs'; ?>">Docs</a></li>
+<li><a href="<?= $this->baseUrl() . '/index/examples'; ?>">Examples</a></li>
+</ul>
+
+
 <?php echo $this->layout()->content; ?>
+
+
+</div>
+<div class="footer">Developed by <a href="http://diogomelo.net">Diogo Oliveira de Melo</a></footer>
+</body>
+
+</html>

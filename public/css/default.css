@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'Terminal Dosis Light';
+    font-size: 18px;
+    src: url('/fonts/TerminalDosis-Light.ttf') ;
+}
+
+html {
+    border-top: 8px solid black;
+    font-family: "Terminal Dosis Light";
+}
+
+body {
+    margin-top: -16px;
+}
+
+div.full_logo {
+    height: 270px;
+    background-image: url("/img/full_logo.png");
+}
+
+
+
+p.plotline {
+    font-size: 40px;
+    margin-top: 100px;
+    margin-left: 220px;
+}
+
+.inner-container {
+border: 1px solid black;
+}
+
+ul.menu {
+    margin-top: -40px;
+    color:white;
+    margin-bottom: 0px;
+    border-bottom: 16px solid black;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 20px;
+}
+
+.menu li a {
+color: white;
+text-decoration: none;
+}
+
+.menu li {
+    background-color: black;
+    list-style-type: none;
+    font-size: 20px;
+    display: inline;
+    padding: 10px;
+	     padding-bottom: 0px;
+border: 1px solid black;
+	padding-top: 4px;
+}
+
+.menu li:hover, .menu li.active, .menu li:hover a, .menu li.active a {
+color:black;
+      background-color: white;
+}
+
+
+.footer {
+    background-color: black;
+    color: white;
+    bottom: 0px;
+    width: 100%;
+    margin: 0px;
+    left: 0px;
+    padding: 10px;
+    text-align: center;
+    position: absolute;
+    border: 0;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.footer a {
+color: white;
+}
