@@ -1,4 +1,12 @@
-<p>This page contains all the information about LighteningPacker's API. This API can be used to pack CSS or Javascript scripts. You must specify the type of pack you want to produce (CSS or Javascript) and the objects to pack. The table bellow shows the full arguments list with examples.</p>
+<h2>Introduction</h2>
+
+<p>LighteningPacker aims to help your website to better delivery content to it's users. Instead of make a numerous amount of requisitions per page load do just one for all your javascript external files and another one for your css files.</p>
+
+<p>This documentation explains how to work with LighteningPacker and how does LighteningPacker works</p>
+
+<h2>Usage</h2>
+
+<p>LighteningPacker works through an API. This API can be used to pack CSS or Javascript scripts. You must specify the type of pack you want to produce (CSS or Javascript) and the objects to pack. The table bellow shows the full arguments list with examples.</p>
 
 <table>
 <thead>
@@ -23,3 +31,13 @@ foreach($this->table as $row) {
 <p>The requisition for a package is made by GET request. The base URL is http://lighteningpacker.net/packit. If you want to pack the jQuery library together with it's TableSort plugin, the LighteningPacker url would be <span class="highlight">http://lighteningpacker.net/packit.php?type=js&obj[]=http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js&obj[]=http://autobahn.tablesorter.com/jquery.tablesorter.min.js</span>.</p>
 
 <p>The /packit.php is pure php, with no framework underneath to slow things down.</p>
+
+<h2>Why Minify?</h2>
+
+<p>The server already uses gzip compression to transmit data. At first it seems like its enought to reduce trafic but there is two problems that Minify attacks and gzip don't.</p>
+
+<p>First, Minify strips the comments out of the code. Comments are not needed for functionality so there is need to keep it. The second thing is regarding to the compress itself. Minify renames variables and functions in a way to minimize the amount of information needed. It follows the same thinking of the Huffman's algorithm for text compression but it cares about the language's syntax.</p>
+
+<p>To demonstrate minified and compressed files are smaller than just compressed files have the file <a href="/txt/file_full.txt">file_full.txt"</a> as an example of non-minified file and <a href="/txt/file_minified.txt">file_minified.txt</a> is it's minified version. After apply gzip over this two files it have 13.8KB and 9.4KB, respectively.</p>
+
+<p>The conclusion is that use Minify will dramatically reduce the amount of data needed to load scripts</p>

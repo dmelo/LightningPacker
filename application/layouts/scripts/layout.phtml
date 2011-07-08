@@ -10,7 +10,8 @@ echo $this->headMeta() . $this->headTitle('LighteningPacker') . $this->headStyle
 
 </head>
 <body>
-<div class="container container_3">
+<div class="top"></div>
+<div class="main-container container container_3">
 
 <div class="grid_3 full_logo">
 &nbsp;
@@ -22,13 +23,14 @@ echo $this->headMeta() . $this->headTitle('LighteningPacker') . $this->headStyle
 <li><a href="<?= $this->baseUrl() . '/index/docs'; ?>">Docs</a></li>
 <li><a href="<?= $this->baseUrl() . '/index/examples'; ?>">Examples</a></li>
 </ul>
+<div class="push">&nbsp;</div>
 
 
 <?php echo $this->layout()->content; ?>
 
 
 </div>
-<div class="footer">Developed by <a href="http://diogomelo.net">Diogo Oliveira de Melo</a></footer>
+<div class="footer">Developed by <a href="http://diogomelo.net">Diogo Oliveira de Melo</a></div>
 </body>
 
 </html>

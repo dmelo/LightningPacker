@@ -62,7 +62,6 @@ function getFile($file)
     return $ret;
 }
 
-
 function getFileSet($fileSet) 
 {
     $key = implode('', $fileSet);
@@ -106,5 +105,3 @@ else {
     fwrite($fd, implode('', $objs) . ' '. ($end - $start) . PHP_EOL);
     fclose($fd);
 }
-
-
