@@ -1,0 +1,25 @@
+<p>This page contains all the information about LighteningPacker's API. This API can be used to pack CSS or Javascript scripts. You must specify the type of pack you want to produce (CSS or Javascript) and the objects to pack. The table bellow shows the full arguments list with examples.</p>
+
+<table>
+<thead>
+<tr class="topic">
+<th>Argument</th>
+<th>Description</th>
+<th>Option</th>
+</tr>
+</thead>
+<tbody>
+<?
+foreach($this->table as $row) {
+    echo '<tr>';
+    foreach($row as $ele)
+	echo '<td>' . $ele . '</td>';
+    echo '</tr>';
+}
+?>
+</tbody>
+</table>
+
+<p>The requisition for a package is made by GET request. The base URL is http://lighteningpacker.net/packit. If you want to pack the jQuery library together with it's TableSort plugin, the LighteningPacker url would be <span class="highlight">http://lighteningpacker.net/packit.php?type=js&obj[]=http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js&obj[]=http://autobahn.tablesorter.com/jquery.tablesorter.min.js</span>.</p>
+
+<p>The /packit.php is pure php, with no framework underneath to slow things down.</p>

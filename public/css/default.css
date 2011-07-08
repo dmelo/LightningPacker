@@ -13,6 +13,10 @@ body {
     margin-top: -16px;
 }
 
+span.highlight {
+    font-weight: bold;
+}
+
 div.full_logo {
     height: 270px;
     background-image: url("/img/full_logo.png");
@@ -27,7 +31,7 @@ p.plotline {
 }
 
 .inner-container {
-border: 1px solid black;
+    border: 1px solid black;
 }
 
 ul.menu {
@@ -41,8 +45,8 @@ ul.menu {
 }
 
 .menu li a {
-color: white;
-text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 
 .menu li {
@@ -51,14 +55,14 @@ text-decoration: none;
     font-size: 20px;
     display: inline;
     padding: 10px;
-	     padding-bottom: 0px;
-border: 1px solid black;
-	padding-top: 4px;
+    padding-bottom: 0px;
+    border: 1px solid black;
+    padding-top: 4px;
 }
 
 .menu li:hover, .menu li.active, .menu li:hover a, .menu li.active a {
-color:black;
-      background-color: white;
+    color:black;
+    background-color: white;
 }
 
 
@@ -78,5 +82,5 @@ color:black;
 }
 
 .footer a {
-color: white;
+    color: white;
 }
