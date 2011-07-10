@@ -3,6 +3,7 @@
 $start = microtime(true);
 
 define('DEFAULT_EXPIRATION', 2 * 24 * 60 * 60);
+define('HOSTNAME', 'http://lighteningpacker.localhost/');
 define('CACHE_DELIMITER', '#####');
 define('CACHE_DIR', 'tmp/');
 
@@ -20,22 +21,13 @@ function setCache($key, $value, $expiration = DEFAULT_EXPIRATION)
 
 function getCache($key) 
 {
-    $log = fopen("/tmp/log.txt", "a");
-    fwrite($log, "1" . $key . PHP_EOL);
     $filename = CACHE_DIR . md5($key);
-    fwrite($log, "2" . $filename . PHP_EOL);
     $ret = null;
-    fwrite($log, "3" . PHP_EOL);
     if(file_exists($filename)) {
-	fwrite($log, "4" . PHP_EOL);
 	$str = file_get_contents($filename);
-	fwrite($log, "5" . $str . PHP_EOL);
 	$info = explode(CACHE_DELIMITER, $str, 3);
-	fwrite($log, "6" . var_export($info, true) . PHP_EOL);
 	$timestamp = (int) $info[0];
-	fwrite($log, "7" . PHP_EOL);
 	$expiration = (int) $info[1];
-	fwrite($log, "8" . PHP_EOL);
 	if(time() > $timestamp + $expiration) { // expired
 	    unlink($filename);
 	}
@@ -43,8 +35,6 @@ function getCache($key)
 	    $ret = $info[2];
 	}
     }
-
-    fclose($log);
 
     return $ret;
 }
@@ -62,7 +52,7 @@ function getFile($file)
     return $ret;
 }
 
-function getFileSet($fileSet) 
+function getFileSet($fileSet, $type = 'js') 
 {
     $key = implode('', $fileSet);
     if(($str = getCache($key)) !== null) {
@@ -72,6 +62,13 @@ function getFileSet($fileSet)
 	$ret = '';
 	foreach($fileSet as $file)
 	    $ret .= getFile($file) . PHP_EOL;
+	$filename = md5($key) . '---internal.' . $type;
+	$fd = fopen(CACHE_DIR . $filename, 'w');
+	fwrite($fd, $ret);
+	fclose($fd);
+	$ret = file_get_contents(HOSTNAME . 'minify/?k=//tmp/' . $filename);
+	unlink(CACHE_DIR . $filename);
+
 	setCache($key, $ret);
     }
 
@@ -95,10 +92,11 @@ else {
     $objs = $_GET['obj'];
     $str = '';
 
-    $str = getFileSet($objs);
-
-    header($header);
+    $str = getFileSet($objs, $type);
+    header("Content-type:  $header");
     echo $str;
+
+
 
     $end = microtime(true);
     $fd = fopen(CACHE_DIR . 'log.txt', 'a');

@@ -13,6 +13,7 @@ html {
 .main-container {
 position: static;
 top: 0px;
+     margin-bottom: 70px;
 }
 
 body {
@@ -48,7 +49,6 @@ p.plotline {
 ul.menu {
     margin-top: -40px;
     color:white;
-    margin-bottom: 0px;
     border-bottom: 16px solid black;
     margin-left: 0px;
     margin-right: 0px;
@@ -95,4 +95,22 @@ ul.menu {
 
 .footer a {
     color: white;
+}
+
+table {
+    border-collapse: collapse;
+border: 1px solid black;
+}
+
+table tr.topic th {
+    background-color: gray;
+    font-weight: bold;
+}
+
+table .even {
+    background-color: #ccc;
+}
+
+table .odd {
+    background-color: white;
 }

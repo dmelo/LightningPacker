@@ -1,1 +1,0 @@
-../../library/Minify/min/groupsConfig.php

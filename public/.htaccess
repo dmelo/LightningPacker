@@ -7,3 +7,5 @@ RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ index.php [NC,L]
 SetOutputFilter DEFLATE 
 AddOutputFilterByType DEFLATE text/html text/plain text/xml text/javascript text/css
+RewriteCond %{REQUEST_URI} !\.(js|ico|gif|jpg|jpeg|png|css|html|htm|xml|zip|gz|txt|ini|doc|ico|swf|flv|fla|dtd|ttf|php)$
+RewriteRule ^/(.*?)$ /index.php
