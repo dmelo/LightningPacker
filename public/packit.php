@@ -1,14 +1,19 @@
 <?php
 
+error_reporting(E_ALL);
 $start = microtime(true);
 
 define('DEFAULT_EXPIRATION', 2 * 24 * 60 * 60);
 define('HOSTNAME', 'http://lighteningpacker.localhost/');
 define('CACHE_DELIMITER', '#####');
 define('CACHE_DIR', 'tmp/');
+$memcache = new Memcache();
+$memcache->connect('localhost', 11211);
 
 function setCache($key, $value, $expiration = DEFAULT_EXPIRATION)
 {
+    global $memcache;
+    // Set cache on disk.
     $ret = false;
     if(($fd = fopen(CACHE_DIR . md5($key), 'w')) != false) {
 	$ret = true;
@@ -16,23 +21,32 @@ function setCache($key, $value, $expiration = DEFAULT_EXPIRATION)
 	fclose($fd);
     }
 
+    // Set cache on memcache.
+    $ret &= $memcache->set(md5($key), $value, 0, $expiration);
+
     return $ret;
 }
 
 function getCache($key) 
 {
-    $filename = CACHE_DIR . md5($key);
-    $ret = null;
-    if(file_exists($filename)) {
-	$str = file_get_contents($filename);
-	$info = explode(CACHE_DELIMITER, $str, 3);
-	$timestamp = (int) $info[0];
-	$expiration = (int) $info[1];
-	if(time() > $timestamp + $expiration) { // expired
-	    unlink($filename);
-	}
-	else {
-	    $ret = $info[2];
+    global $memcache;
+    // checks memcache.
+    if(($ret = $memcache->get(md5($key))) === false) {
+	// checks disk.
+	$filename = CACHE_DIR . md5($key);
+	$ret = null;
+	if(file_exists($filename)) {
+	    $str = file_get_contents($filename);
+	    $info = explode(CACHE_DELIMITER, $str, 3);
+	    $timestamp = (int) $info[0];
+	    $expiration = (int) $info[1];
+	    if(time() > $timestamp + $expiration) { // expired
+		unlink($filename);
+	    }
+	    else {
+		$ret = $info[2];
+		$memcache->set(md5($key), $ret, 0, $expiration);
+	    }
 	}
     }
 
@@ -67,7 +81,7 @@ function getFileSet($fileSet, $type = 'js')
 	fwrite($fd, $ret);
 	fclose($fd);
 	$ret = file_get_contents(HOSTNAME . 'minify/?k=//tmp/' . $filename);
-	unlink(CACHE_DIR . $filename);
+	//unlink(CACHE_DIR . $filename);
 
 	setCache($key, $ret);
     }
