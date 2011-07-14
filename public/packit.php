@@ -4,9 +4,11 @@ error_reporting(E_ALL);
 $start = microtime(true);
 
 define('DEFAULT_EXPIRATION', 2 * 24 * 60 * 60);
-define('HOSTNAME', 'http://lightningpacker.net/');
 define('CACHE_DELIMITER', '#####');
 define('CACHE_DIR', 'tmp/');
+$fdomain = fopen('domain.txt', 'r');
+fscanf($fdomain, " %s ", $domain);
+fclose($fdomain);
 $memcache = new Memcache();
 $memcache->connect('localhost', 11211);
 
@@ -68,6 +70,8 @@ function getFile($file)
 
 function getFileSet($fileSet, $type = 'js') 
 {
+    global $domain;
+
     $key = implode('', $fileSet);
     if(($str = getCache($key)) !== false) {
 	$ret = $str;
@@ -80,7 +84,7 @@ function getFileSet($fileSet, $type = 'js')
 	$fd = fopen(CACHE_DIR . $filename, 'w');
 	fwrite($fd, $ret);
 	fclose($fd);
-	$ret = file_get_contents(HOSTNAME . 'minify/?k=//tmp/' . $filename);
+	$ret = file_get_contents("${domain}/minify/?k=//tmp/${filename}");
 	//unlink(CACHE_DIR . $filename);
 
 	setCache($key, $ret);

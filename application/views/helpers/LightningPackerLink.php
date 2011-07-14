@@ -1,14 +1,13 @@
 <?php
 
-//define('LP_BASE', 'http://lightningpacker.net/packit.php');
-
 class Zend_View_Helper_LightningPackerLink extends Zend_View_Helper_HeadLink
 {
     public function toString($indent = null)
     {
+	$domain = Zend_Registry::get('domain');
         $items = array();
         $this->getContainer()->ksort();
-	$ret = LP_BASE . '?type=css';
+	$ret = $domain . '/packit.php?type=css';
 	$first  = true;
 	foreach ($this as $item) {
 	    $item = (array) $item;

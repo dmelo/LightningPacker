@@ -6,9 +6,10 @@ class Zend_View_Helper_LightningPackerScript extends Zend_View_Helper_HeadScript
 {
     public function toString($indent = null)
     {
+	$domain = Zend_Registry::get('domain');
         $items = array();
         $this->getContainer()->ksort();
-	$ret = LP_BASE . '?type=js';
+	$ret = $domain . '/packit.php?type=js';
 	$first  = true;
 	foreach ($this as $item) {
 	    $ret .= "&obj[]=" . $item->attributes['src'];
