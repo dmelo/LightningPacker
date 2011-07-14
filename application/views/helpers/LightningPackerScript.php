@@ -1,6 +1,6 @@
 <?php
 
-define('LP_BASE', 'http://lightningpacker.localhost/packit.php');
+define('LP_BASE', 'http://lightningpacker.net/packit.php');
 
 class Zend_View_Helper_LightningPackerScript extends Zend_View_Helper_HeadScript
 {

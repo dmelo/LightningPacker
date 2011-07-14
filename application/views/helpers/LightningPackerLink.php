@@ -1,6 +1,6 @@
 <?php
 
-//define('LP_BASE', 'http://lightningpacker.localhost/packit.php');
+//define('LP_BASE', 'http://lightningpacker.net/packit.php');
 
 class Zend_View_Helper_LightningPackerLink extends Zend_View_Helper_HeadLink
 {
@@ -11,7 +11,8 @@ class Zend_View_Helper_LightningPackerLink extends Zend_View_Helper_HeadLink
 	$ret = LP_BASE . '?type=css';
 	$first  = true;
 	foreach ($this as $item) {
-	    $ret .= "&obj[]=" . $item->attributes['src'];
+	    $item = (array) $item;
+	    $ret .= "&obj[]=" . $item['href'];
 	}
 
 	return "<link href=\"$ret\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />";

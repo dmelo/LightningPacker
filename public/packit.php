@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 $start = microtime(true);
 
 define('DEFAULT_EXPIRATION', 2 * 24 * 60 * 60);
-define('HOSTNAME', 'http://lightningpacker.localhost/');
+define('HOSTNAME', 'http://lightningpacker.net/');
 define('CACHE_DELIMITER', '#####');
 define('CACHE_DIR', 'tmp/');
 $memcache = new Memcache();
@@ -108,6 +108,8 @@ else {
 
     $str = getFileSet($objs, $type);
     header("Content-type:  $header");
+    header("Cache-Control: max-age=604800, must-revalidate");
+    header("Expires: ".gmdate("D, d M Y H:i:s", time()+1000)."GMT");
     echo $str;
 
 
