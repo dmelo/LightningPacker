@@ -1,6 +1,6 @@
 <?php
 
-define('LP_BASE', 'http://lighteningpacker.localhost/packit.php?type=js');
+define('LP_BASE', 'http://lightningpacker.localhost/packit.php');
 
 class Zend_View_Helper_LightningPackerScript extends Zend_View_Helper_HeadScript
 {
@@ -8,7 +8,7 @@ class Zend_View_Helper_LightningPackerScript extends Zend_View_Helper_HeadScript
     {
         $items = array();
         $this->getContainer()->ksort();
-	$ret = LP_BASE;
+	$ret = LP_BASE . '?type=js';
 	$first  = true;
 	foreach ($this as $item) {
 	    $ret .= "&obj[]=" . $item->attributes['src'];

@@ -1,6 +1,6 @@
 <?php
 
-define('LP_BASE', 'http://lighteningpacker.localhost/packit.php?type=css');
+//define('LP_BASE', 'http://lightningpacker.localhost/packit.php');
 
 class Zend_View_Helper_LightningPackerLink extends Zend_View_Helper_HeadLink
 {
@@ -8,7 +8,7 @@ class Zend_View_Helper_LightningPackerLink extends Zend_View_Helper_HeadLink
     {
         $items = array();
         $this->getContainer()->ksort();
-	$ret = LP_BASE;
+	$ret = LP_BASE . '?type=css';
 	$first  = true;
 	foreach ($this as $item) {
 	    $ret .= "&obj[]=" . $item->attributes['src'];
@@ -18,5 +18,9 @@ class Zend_View_Helper_LightningPackerLink extends Zend_View_Helper_HeadLink
     }
 
 
-    public function lightningPackerLink(array $attributes = null, $placement = Zend_View_Helper_Placeholder_Container_Abstract::APPEND)
+    public function lightningPackerLink(array $attributes = null, $placement = Zend_View_Helper_Placeholder_Container_Abstract::APPEND) 
+    {
+	parent::headLink($attributes, $placement);
+	return $this;
+    }
 }

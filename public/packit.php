@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 $start = microtime(true);
 
 define('DEFAULT_EXPIRATION', 2 * 24 * 60 * 60);
-define('HOSTNAME', 'http://lighteningpacker.localhost/');
+define('HOSTNAME', 'http://lightningpacker.localhost/');
 define('CACHE_DELIMITER', '#####');
 define('CACHE_DIR', 'tmp/');
 $memcache = new Memcache();
@@ -34,7 +34,7 @@ function getCache($key)
     if(($ret = $memcache->get(md5($key))) === false) {
 	// checks disk.
 	$filename = CACHE_DIR . md5($key);
-	$ret = null;
+	$ret = false;
 	if(file_exists($filename)) {
 	    $str = file_get_contents($filename);
 	    $info = explode(CACHE_DELIMITER, $str, 3);
@@ -55,7 +55,7 @@ function getCache($key)
 
 function getFile($file)
 {
-    if(($str = getCache($file)) !== null) {
+    if(($str = getCache($file)) !== false) {
 	$ret = $str;
     }
     else {
@@ -69,7 +69,7 @@ function getFile($file)
 function getFileSet($fileSet, $type = 'js') 
 {
     $key = implode('', $fileSet);
-    if(($str = getCache($key)) !== null) {
+    if(($str = getCache($key)) !== false) {
 	$ret = $str;
     }
     else {

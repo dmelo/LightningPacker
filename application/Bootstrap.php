@@ -5,7 +5,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
     protected function _initView()
     {
-	$config = new Zend_Config_Ini('../application/config/application.ini', APPLICATION_ENV);
+	$config = new Zend_Config_Ini('../application/configs/application.ini', APPLICATION_ENV);
+	Zend_Registry::set('config', $config);
 	$view = new Zend_View($this->getOptions());
 	$view->addHelperPath('../application/views/helpers/', 'Zend_View_Helper');
 	$view->doctype('HTML5');
