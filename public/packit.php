@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Packs the given script accordenly with specified parameters and cache it for further use.
+ *
+ * @author Diogo Oliveira de Melo
+ */
+
 error_reporting(E_ALL);
 $start = microtime(true);
 

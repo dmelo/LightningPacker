@@ -12,7 +12,7 @@ class Zend_View_Helper_LightningPackerScript extends Zend_View_Helper_HeadScript
 	$ret = $domain . '/packit.php?type=js';
 	$first  = true;
 	foreach ($this as $item) {
-	    $ret .= "&obj[]=" . $item->attributes['src'];
+	    $ret .= "&obj[]=" . urlencode($item->attributes['src']);
 	}
 
 	return "<script type=\"text/javascript\" src=\"$ret\"></script>";

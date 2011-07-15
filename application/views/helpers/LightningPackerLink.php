@@ -11,7 +11,7 @@ class Zend_View_Helper_LightningPackerLink extends Zend_View_Helper_HeadLink
 	$first  = true;
 	foreach ($this as $item) {
 	    $item = (array) $item;
-	    $ret .= "&obj[]=" . $item['href'];
+	    $ret .= "&obj[]=" . urlencode($item['href']);
 	}
 
 	return "<link href=\"$ret\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />";
