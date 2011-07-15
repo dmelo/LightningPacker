@@ -15,71 +15,102 @@ $memcache->connect('localhost', 11211);
 function setCache($key, $value, $expiration = DEFAULT_EXPIRATION)
 {
     global $memcache;
+    $ret = true;
+    $str = time() . CACHE_DELIMITER . $expiration . CACHE_DELIMITER . $value;
+
     // Set cache on disk.
-    $ret = false;
     if(($fd = fopen(CACHE_DIR . md5($key), 'w')) != false) {
 	$ret = true;
-	fwrite($fd, time() . CACHE_DELIMITER . $expiration . CACHE_DELIMITER . $value);
+	fwrite($fd, $str);
 	fclose($fd);
     }
 
     // Set cache on memcache.
-    $ret &= $memcache->set(md5($key), $value, 0, $expiration);
+    $ret &= $memcache->set(md5($key), $str, 0, $expiration);
 
     return $ret;
 }
 
-function getCache($key) 
+function deleteCache($key)
 {
     global $memcache;
+
+    unlink(CACHE_DIR . md5($key));
+
+    $memcache->delete(md5($key));
+}
+
+function getCache($key, $expRequested) 
+{
+    global $memcache;
+    $expRequested = max($expRequested, 0);
+
     // checks memcache.
-    if(($ret = $memcache->get(md5($key))) === false) {
+    if(($str = $memcache->get(md5($key))) === false) {
 	// checks disk.
 	$filename = CACHE_DIR . md5($key);
 	$ret = false;
 	if(file_exists($filename)) {
 	    $str = file_get_contents($filename);
-	    $info = explode(CACHE_DELIMITER, $str, 3);
-	    $timestamp = (int) $info[0];
-	    $expiration = (int) $info[1];
-	    if(time() > $timestamp + $expiration) { // expired
-		unlink($filename);
-	    }
-	    else {
-		$ret = $info[2];
-		$memcache->set(md5($key), $ret, 0, $expiration);
-	    }
 	}
     }
 
+    if($str !== false) {
+	$info = explode(CACHE_DELIMITER, $str, 3);
+	$timestamp = (int) $info[0];
+	$expiration = (int) $info[1];
+	$newExpiration = $timestamp + $expiration - time();
+	if(time() > $timestamp + $expiration || time() + $expRequested <= $timestamp + $expiration) { // expired
+	    $ret = false;
+	    deleteCache($filename);
+	}
+	else {
+	    $ret = array($info[2], $newExpiration);
+	}
+    }
+    else
+	$ret = false;
+
+
     return $ret;
 }
 
-function getFile($file)
+function getFile($file, $expiration)
 {
-    if(($str = getCache($file)) !== false) {
-	$ret = $str;
-    }
-    else {
-	$ret = file_get_contents($file);
-	setCache($file, $ret);
+    if(($ret = getCache($file, $expiration)) === false) {
+	$ret = array(file_get_contents($file), $expiration);
+	setCache($file, $ret[0], $expiration);
     }
 
     return $ret;
 }
 
-function getFileSet($fileSet, $type = 'js') 
+/**
+ * Get the content that represents the file set given.
+ *
+ * @param $fileSet Set of files.
+ * @param $type File type, it can be either js or css.
+ *
+ * @return Returns an array with the file set content as first argument and timestamp termination of it's cache as second argument
+ */
+function getFileSet($fileSet, $type = 'js', $expiration) 
 {
     global $domain;
 
     $key = implode('', $fileSet);
-    if(($str = getCache($key)) !== false) {
-	$ret = $str;
-    }
-    else {
+    if(($ret = getCache($key, $expiration)) === false) {
 	$ret = '';
-	foreach($fileSet as $file)
-	    $ret .= getFile($file) . PHP_EOL;
+	$newExpiration = null;
+	foreach($fileSet as $file) {
+	    $fileInfo = getFile($file, $expiration);
+	    if($newExpiration === null)
+		$newExpiration = $fileInfo[1];
+	    else
+		$newExpiration = min($newExpiration, $fileInfo[1]);
+	    $ret .= $fileInfo[0];
+	}
+
+
 	$filename = md5($key) . '---internal.' . $type;
 	$fd = fopen(CACHE_DIR . $filename, 'w');
 	fwrite($fd, $ret);
@@ -87,7 +118,8 @@ function getFileSet($fileSet, $type = 'js')
 	$ret = file_get_contents("${domain}/minify/?k=//tmp/${filename}");
 	//unlink(CACHE_DIR . $filename);
 
-	setCache($key, $ret);
+	setCache($key, $ret, $expiration);
+	$ret = array($ret, $expiration);
     }
 
     return $ret;
@@ -97,6 +129,7 @@ if(!array_key_exists('type', $_GET) || !array_key_exists('obj', $_GET) || !in_ar
     echo 'Error: arguments missing. Consult the documentation and formulate a proper request.' . PHP_EOL;
 }
 else {
+    $expiration = array_key_exists('expiration', $_GET) ? $_GET['expiration'] : DEFAULT_EXPIRATION;
     $type = $_GET['type'];
     $header = '';
     switch($type) {
@@ -110,10 +143,10 @@ else {
     $objs = $_GET['obj'];
     $str = '';
 
-    $str = getFileSet($objs, $type);
+    list($str, $limit) = getFileSet($objs, $type, $expiration);
     header("Content-type:  $header");
     header("Cache-Control: max-age=604800, must-revalidate");
-    header("Expires: ".gmdate("D, d M Y H:i:s", time()+1000)."GMT");
+    header("Expires: ".gmdate("D, d M Y H:i:s", time() + $limit)."GMT");
     echo $str;
 
 

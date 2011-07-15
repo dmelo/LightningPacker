@@ -1,11 +1,6 @@
-@font-face {
-    font-family: 'Terminal Dosis Light';
-    font-size: 18px;
-    src: url('/fonts/TerminalDosis-Light.ttf') ;
-}
-
 html {
     font-family: "Lucida Sans Unicode","Lucida Grande",Garuda,sans-serif;
+    font-size: 15px;
     position: relative;
     min-height: 100%;
 }
