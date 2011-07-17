@@ -113,7 +113,10 @@ function getFileSet($fileSet, $type = 'js', $expiration)
 		$newExpiration = $fileInfo[1];
 	    else
 		$newExpiration = min($newExpiration, $fileInfo[1]);
-	    $ret .= $fileInfo[0];
+	    if('js' === $type)
+		$ret .= PHP_EOF . ';' . PHP_EOL . $fileInfo[0];
+	    else
+		$ret .= PHP_EOL . $fileInfo[0];
 	}
 
 
