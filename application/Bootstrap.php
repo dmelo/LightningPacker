@@ -15,6 +15,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	$view->headMeta()->setCharset('utf-8');
 	$view->lightningPackerScript()->appendFile('http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js?a=b&c=d');
 	$view->lightningPackerScript()->appendFile('http://autobahn.tablesorter.com/jquery.tablesorter.min.js');
+	$view->lightningPackerScript()->appendFile($domain . '/js/chili/jquery.chili-2.2.js');
+	$view->lightningPackerScript()->appendFile($domain . '/js/chili/recipes.js');
 	$view->lightningPackerScript()->appendFile($domain . '/js/default.js');
 	$view->lightningPackerLink()->appendStylesheet($domain . '/css/810.css');
 	$view->lightningPackerLink()->appendStylesheet($domain . '/css/default.css');

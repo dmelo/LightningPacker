@@ -4,5 +4,36 @@
 
 <p>The page <a target="_blank" href="/html/example-without-lp.html">example-without-lp.html</a> is the very same page but instead of call LightningPacker the page is calling each separately</p>
 
+<p><a target="_blank" href="/html/example-with-lp.html.txt">example-with-lp.html.txt</a> and <a target="_blank" href="/html/example-without-lp.html.txt">example-without-lp.html.txt</a> are the source code of the html pages.</p>
 
+<p>On the top of the sample page not using LightningPacker you can see the CSS headers</p>
+
+<div class="html">
+<?php 
+echo htmlentities('<head>
+<title>Example of Page without LightningPacker</title>
+<link rel="shortcut icon" href="/img/example/favicon.ico" type="image/x-icon" />
+<link href="/css/810.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/css/example.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/css/example-simplemodal.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/css/jquery.jqzoom.css" media="screen" rel="stylesheet" type="text/css" />
+</head>');
+?>
+</div>
+
+<p>It will cause the browser to make four requests in order to understand the page's layout. The code snipet bellow belongs to the example using LightningPacker.</p>
+
+<div class="html">
+<?php
+
+echo htmlentities('<head>
+<title>Example of Page with LightningPacker</title>
+<link rel="shortcut icon" href="/img/example/favicon.ico" type="image/x-icon" />
+<link href="http://lightningpacker.net/packit.php?type=css&obj[]=http://lightningpacker.net/css/810.css&obj[]=http://lightningpacker.net/css/example.css&obj[]=http://lightningpacker.net/css/example-simplemodal.css&obj[]=http://lightningpacker.net/css/jquery.jqzoom.css" media="screen" rel="stylesheet" type="text/css" />
+</head>');
+?>
+
+</div>
+
+<p>In terms of CSS, both approaches have the exactly same effect. The difference is the number of requests performed and the amount of data tranfered.</p>
 
