@@ -124,7 +124,7 @@ function getFileSet($fileSet, $type = 'js', $expiration)
 	$fd = fopen(CACHE_DIR . $filename, 'w');
 	fwrite($fd, $ret);
 	fclose($fd);
-	$ret = file_get_contents("${domain}/minify/?k=//tmp/${filename}");
+	$ret = file_get_contents("${domain}/minify/index.php?k=//tmp/${filename}");
 	//unlink(CACHE_DIR . $filename);
 
 	setCache($key, $ret, $expiration);
