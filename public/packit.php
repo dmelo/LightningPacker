@@ -88,7 +88,7 @@ else {
     }
 
     header("Content-type:  $header");
-    header("Cache-Control: max-age=604800, must-revalidate");
+    header("Cache-Control: max-age=604800, public");
     header("Expires: ".gmdate("D, d M Y H:i:s", time() + DEFAULT_EXPIRATION)."GMT");
     echo getFileSet($_GET['obj'], $_GET['type']);
 }
