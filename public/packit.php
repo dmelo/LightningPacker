@@ -69,7 +69,7 @@ function getFileSet($fileSet, $type = 'js')
     $ret = file_get_contents("${domain}/minify/index.php?k=//tmp/${filename}");
 
     setCache($key, $ret);
-    system('cd ' . CACHE_DIR .  '; ln -s ' . md5($key) . ' ' . md5($key) . '.' . $type);
+    system('cd ' . CACHE_DIR .  '; cp ' . md5($key) . ' ' . md5($key) . '.' . $type . '; gzip --force -9 ' . md5($key) . '.' . $type);
 
     return $ret;
 }

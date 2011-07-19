@@ -47,3 +47,20 @@ foreach($this->table as $row) {
 <p>To demonstrate minified and compressed files are smaller than just compressed files have the file <a href="/txt/file_full.txt">file_full.txt"</a> as an example of non-minified file and <a href="/txt/file_minified.txt">file_minified.txt</a> is it's minified version. After apply gzip over this two files it have 13.8KB and 9.4KB, respectively.</p>
 
 <p>The conclusion is that use Minify will dramatically reduce the amount of data needed to load scripts</p>
+
+<h2>Cache compressed files</h2>
+
+<p>Usually files are cached text plain and then, when a requisition comes, apache fetchs it from the cache and compress the content on run time. This is bad. Gzip is not very light at the point of letting it run wild like this.</p>
+
+<p>Lightning packer store/cache compressed files so that there is no need to run gzip per requisition.</p>
+
+<p>To show the performance difference a test was performed. A JS file not compressed have 132.3 KB. If a requisition is made for this file with Apache set to use gzip on JS files we have the result as show on the figure bellow.</p>
+
+<img src="/img/method-1.png" alt="Figure 1"/>
+
+<p>For the second approach we have the script get.php which set the proper headers to tell the browser the file is compressed and then the script echo the content of the compressed file. For this second approach the result is bellow.</p>
+
+
+<img src="/img/method-2.png" alt="Figure 2"/>
+
+<p>Compress the file on the fly takes 23 ms for the request to complete while cache the file compressed make request time only 6 ms. The time to transmit the file is the same of both approaches the difference relies on the fact that the served is not using gzip per each request anymore. This is why LightningPacker saves the compressed files.</p>

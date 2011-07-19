@@ -1,7 +1,5 @@
 <?php
 
-define('LP_BASE', 'http://lightningpacker.net/packit.php');
-
 class Zend_View_Helper_LightningPackerScript extends Zend_View_Helper_HeadScript
 {
     public function toString($indent = null)
@@ -16,7 +14,7 @@ class Zend_View_Helper_LightningPackerScript extends Zend_View_Helper_HeadScript
 	$hash = md5($concat);
 	$hashFile = '/tmp/' . $hash . '-lp';
 
-	$ret = "<script type=\"text/javascript\" src=\"${domain}/tmp/${hash}.js\"></script>";
+	$ret = "<script type=\"text/javascript\" src=\"${domain}/get.php?hash=${hash}&type=js\"></script>";
 	if(!file_exists($hashFile)) {
 	    $buildUrl = $domain . '/packit.php?type=js';
 	    $first  = true;
