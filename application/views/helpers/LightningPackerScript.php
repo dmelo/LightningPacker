@@ -9,13 +9,26 @@ class Zend_View_Helper_LightningPackerScript extends Zend_View_Helper_HeadScript
 	$domain = Zend_Registry::get('domain');
         $items = array();
         $this->getContainer()->ksort();
-	$ret = $domain . '/packit.php?type=js';
-	$first  = true;
-	foreach ($this as $item) {
-	    $ret .= "&obj[]=" . urlencode($item->attributes['src']);
+
+	$concat = '';
+	foreach($this as $item)
+	    $concat .= $item->attributes['src'];
+	$hash = md5($concat);
+	$hashFile = '/tmp/' . $hash . '-lp';
+
+	$ret = "<script type=\"text/javascript\" src=\"${domain}/tmp/${hash}.js\"></script>";
+	if(!file_exists($hashFile)) {
+	    $buildUrl = $domain . '/packit.php?type=js';
+	    $first  = true;
+	    foreach ($this as $item) {
+		$buildUrl .= "&obj[]=" . urlencode($item->attributes['src']);
+	    }
+	    file_get_contents($buildUrl);
+	    $fd = fopen($hashFile, 'w');
+	    fclose($fd);
 	}
 
-	return "<script type=\"text/javascript\" src=\"$ret\"></script>";
+	return $ret;
     }
 
 

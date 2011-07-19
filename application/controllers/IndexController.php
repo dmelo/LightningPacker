@@ -26,7 +26,6 @@ class IndexController extends Zend_Controller_Action
 		array('obj[]', 'Contains the list of objects. For each script, add the url into the obj array.', 'obj[]=http://example.com/a.js&obj[]=http://example.com/b.js'),
 		array('expire', 'Time for which the cache must be kept, in seconds. This parameter is optional and the default value is 172800, which is the equivalent to two days.', '3600'),
 	    );
-
     }
 
     public function examplesAction()
