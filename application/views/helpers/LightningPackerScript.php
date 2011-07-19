@@ -24,6 +24,7 @@ class Zend_View_Helper_LightningPackerScript extends Zend_View_Helper_HeadScript
 		$buildUrl .= "&obj[]=" . urlencode($item->attributes['src']);
 	    }
 	    file_get_contents($buildUrl);
+	    echo '<!-- ' . $buildUrl . '-->';
 	    $fd = fopen($hashFile, 'w');
 	    fclose($fd);
 	}
