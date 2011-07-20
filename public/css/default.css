@@ -109,3 +109,8 @@ table .even {
 table .odd {
     background-color: white;
 }
+
+li { list-style: upper-alpha;}
+li li { list-style: decimal;}
+li li li { list-style: lower-roman;}
+li li li li { list-style: lower-alpha;}

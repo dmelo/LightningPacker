@@ -1,3 +1,5 @@
+<ul class="toc"></ul>
+
 <h2>Introduction</h2>
 
 <p>LightningPacker aims to help your website to better delivery content to it's users. Instead of make a numerous amount of requisitions per page load do just one for all your javascript external files and another one for your css files.</p>
@@ -89,3 +91,32 @@ foreach($this->table2 as $row) {
 <img src="/img/method-2.png" alt="Figure 2"/>
 
 <p>Compress the file on the fly takes 23 ms for the request to complete while cache the file compressed make request time only 6 ms. The time to transmit the file is the same of both approaches the difference relies on the fact that the served is not using gzip per each request anymore. This is why LightningPacker saves the compressed files.</p>
+
+<h2>Performance</h2>
+
+<p>There is a few elements to see while analysing a performance:</p>
+
+<ul>
+<li>Number of request needed to load a page</li>
+<li>Total amount of data transfered to load a page</li>
+<li>Page load time</li>
+</ul>
+
+<h3>Number of Requests per Page Load</h3>
+
+<p>In order to render the page the browser must download the HTML file, all the CSS and JS files it references and all the objects all those files references. Many JS and CSS scripts will produce many requests on the server. Web developers often uses CDNs to (i) improve loading time of a few scripts and (ii) reduce the server load. But great part of the scripts still hosted by the server's site.</p>
+
+<p>Using LightningPacker 100% of the CSS and JS content used by the site can be hosted at LightningPacker.</p>
+
+<h3>Total Amount of Data</h3>
+
+<p>LightningPacker uses gzip to compress files. The compression is made after concatenate and minify all scripts to save each bit possible.</p>
+
+<h3>Page Load Time</h3>
+
+<p>The browser usually downloads the script in parallel in order to save time so it is expected that LightningPacker increase the time needed to load CSS and JS packages. But in fact it doesn't. LightningPacker takes lots of measures to optimize file transfer. When a package is created, it is first compressed and then cached. So that when a requisition arives Apache don't need to compress the file again.</p>
+
+<p>The demo pages on <a href="/exemples">exemples</a> have the following results to load it's content.</p>
+
+<a href="/img/ewolp.png" class="fancyzoom"><img src="/img/ewolp-small.png" alt="Page load NOT using LightningPacker" /></a>
+<a href="/img/ewlp.png" class="fancyzoom"><img src="/img/ewlp-small.png" alt="Page load using LightningPacker" /></a>

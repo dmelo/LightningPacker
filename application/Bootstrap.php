@@ -17,6 +17,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	$view->lightningPackerScript()->appendFile('http://autobahn.tablesorter.com/jquery.tablesorter.min.js');
 	$view->lightningPackerScript()->appendFile($domain . '/js/chili/jquery.chili-2.2.js');
 	$view->lightningPackerScript()->appendFile($domain . '/js/chili/recipes.js');
+	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.shadow.js');
+	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.ifixpng.js');
+	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.fancyzoom.min.js');
+	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.tableofcontents.min.js');
 	$view->lightningPackerScript()->appendFile($domain . '/js/default.js');
 	$view->lightningPackerLink()->appendStylesheet($domain . '/css/810.css');
 	$view->lightningPackerLink()->appendStylesheet($domain . '/css/default.css');
