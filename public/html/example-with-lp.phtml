@@ -1,9 +1,11 @@
+<? include('../LightningPacker.php'); ?>
+
 <html>
 
 <head>
 <title>Example of Page with LightningPacker</title>
 <link rel="shortcut icon" href="/img/example/favicon.ico" type="image/x-icon" />
-<link href="http://lightningpacker.net/packit.php?type=css&obj[]=http://lightningpacker.net/css/810.css&obj[]=http://lightningpacker.net/css/example.css&obj[]=http://lightningpacker.net/css/example-simplemodal.css&obj[]=http://lightningpacker.net/css/jquery.jqzoom.css" media="screen" rel="stylesheet" type="text/css" />
+<?= lightningPacker(array('http://lightningpacker.net/css/810.css', 'http://lightningpacker.net/css/example.css', 'http://lightningpacker.net/css/example-simplemodal.css', 'http://lightningpacker.net/css/jquery.jqzoom.css'), 'css'); ?>
 </head>
 
 <body>
@@ -34,7 +36,7 @@
 </div>
 
 
-<script type="text/javascript" src="http://lightningpacker.net/packit.php?type=js&obj[]=http://code.jquery.com/jquery-1.6.2.min.js&obj[]=http://simplemodal.googlecode.com/files/jquery.simplemodal-1.4.1.js&obj[]=http://lightningpacker.net/js/jquery.jqzoom-core-pack.js&obj[]=http://lightningpacker.net/js/example.js"></script>
+<?= lightningPacker(array('http://code.jquery.com/jquery-1.6.2.min.js', 'http://simplemodal.googlecode.com/files/jquery.simplemodal-1.4.1.js', 'http://lightningpacker.net/js/jquery.jqzoom-core-pack.js', 'http://lightningpacker.net/js/example.js'), 'js'); ?>
 
 </body>
 </html>

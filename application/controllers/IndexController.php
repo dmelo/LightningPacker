@@ -24,8 +24,13 @@ class IndexController extends Zend_Controller_Action
 	$this->view->table = array(
 		array('type', 'Determine wheter the package is JS or CSS. May assume just the values "js" or "css".', 'js'),
 		array('obj[]', 'Contains the list of objects. For each script, add the url into the obj array.', 'obj[]=http://example.com/a.js&obj[]=http://example.com/b.js'),
-		array('expire', 'Time for which the cache must be kept, in seconds. This parameter is optional and the default value is 172800, which is the equivalent to two days.', '3600'),
 	    );
+
+	$this->view->table2 = array(
+		array('type', 'Determine wheter the package is JS or CSS. May assume just the values "js" or "css".', 'js'),
+		array('hash', 'The md5 of the concatenation of all "obj" parameters. The php code to produce this parameter would be something like md5(implode(\'\', $obj)).', '85e8c81c98b46b90f80cd9b80b5066fb'),
+	    );
+
     }
 
     public function examplesAction()

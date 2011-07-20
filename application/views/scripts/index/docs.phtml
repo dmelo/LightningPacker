@@ -8,7 +8,7 @@
 
 <h2>Usage</h2>
 
-<p>LightningPacker works through an API. This API can be used to pack CSS or Javascript scripts. You must specify the type of pack you want to produce (CSS or Javascript) and the objects to pack. The table bellow shows the full arguments list with examples.</p>
+<p>LightningPacker works through an API. This API can be used to pack CSS or Javascript scripts. You must specify the type of pack you want to produce (CSS or Javascript) and the objects to pack. The table bellow shows the full arguments list for creating your packages.</p>
 
 <table>
 <thead>
@@ -32,11 +32,36 @@ foreach($this->table as $row) {
 
 <p>The requisition for a package is made by GET request. The base URL is <span class="highlight">http://lightningpacker.net/packit.php</span> . If you want to pack the jQuery library together with it's TableSort plugin, the LightningPacker url would be <span class="highlight">http://lightningpacker.net/packit.php?type=js&obj[]=http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js&obj[]=http://autobahn.tablesorter.com/jquery.tablesorter.min.js</span>.</p>
 
+<p>Once the package is done you can use it by provinding the hash parameter together with the script type. The base URL for this operation is <span class="highlight">http://lightningpacker.net/packit.php</span>. See bellow, the list of possible arguments.</p>
+
+<table>
+<thead>
+<tr class="topic">
+<th>Argument</th>
+<th>Description</th>
+<th>Option</th>
+</tr>
+</thead>
+<tbody>
+<?
+foreach($this->table2 as $row) {
+    echo '<tr>';
+    foreach($row as $ele)
+	echo '<td>' . $ele . '</td>';
+    echo '</tr>';
+}
+?>
+</tbody>
+</table>
+
+
 <p>The /packit.php is pure php, with no framework underneath to slow things down.</p>
+
+
 
 <h2>Source Code</h2>
 
-<p>This is an open source project. <a target="_blank" href="/packit.php.txt">packit.php</a> is the script responsable and the links is pointing to the version running.</p>
+<p>This is an open source project. <a target="_blank" href="/packit.php.txt">packit.php</a> is the script responsable for creating the packages while <a target="_blank" href="/get.php.txt">get.php</a> retrieves the cached content.</p>
 
 <h2>Why Minify?</h2>
 
