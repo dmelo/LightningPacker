@@ -21,8 +21,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.ifixpng.js');
 	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.fancyzoom.min.js');
 	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.tableofcontents.min.js');
+	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.placeholder.js');
+	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.jqtransform.js');
 	$view->lightningPackerScript()->appendFile($domain . '/js/default.js');
 	$view->lightningPackerLink()->appendStylesheet($domain . '/css/810.css');
+	$view->lightningPackerLink()->appendStylesheet($domain . '/css/jqtransform.css');
 	$view->lightningPackerLink()->appendStylesheet($domain . '/css/default.css');
     }
 

@@ -6,4 +6,6 @@ $(document).ready(function() {
     $('a.fancyzoom').fancyzoom();
 
     $('.toc').tableOfContents(null, {startLevel: 2});
+
+    $('form.jqtransform').jqTransform();
 });

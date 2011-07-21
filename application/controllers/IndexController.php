@@ -38,8 +38,22 @@ class IndexController extends Zend_Controller_Action
         // action body
     }
 
+    public function quickstartAction()
+    {
+        // action body
+    }
+
+    public function packagemanagerAction()
+    {
+        // action body
+    }
+
 
 }
+
+
+
+
 
 
 
