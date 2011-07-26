@@ -32,7 +32,7 @@ function preparePackageManager() {
 
 $(document).ready(function() {
     if($('html.ie').length != 0) {
-	$.modal('This site is not meant for IE. Please, get a better browser!');
+	$.modal('<p>This site may not be fully function on IE.</p></p><b>Please, get a better browser!</b></p>');
     }
     $('table').tablesorter({widgets: ['zebra']});
 

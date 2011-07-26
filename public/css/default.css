@@ -179,3 +179,13 @@ div.remove-url:hover {
 .jqTransformInputWrapper {
 float: none !important;
 }
+
+.simplemodal-container {
+padding: 5px;
+	 background-color: white;
+border: 1px solid black;
+}
+
+.simplemodal-overlay {
+    background-color: white;
+}
