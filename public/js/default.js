@@ -15,9 +15,9 @@ function preparePackageManager() {
 	$('.html').chili();
     });
 
-    $('div.remove-url').mouseout(function(e) {
+    $('div.remove-url').live('mouseout', function(e) {
 	$(this).animate({opacity: 0.25});
-    }).mouseover(function(e) {
+    }).live('mouseover', function(e) {
 	$(this).animate({opacity: 1.0});
     });
 
