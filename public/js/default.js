@@ -32,7 +32,7 @@ function preparePackageManager() {
 
 $(document).ready(function() {
     if($('html.ie').length != 0) {
-	$.modal('<p>This site may not be fully function on IE.</p></p><b>Please, get a better browser!</b></p>');
+	$.modal('<p>This site may not be fully functional on IE.</p></p><b>Please, get a better browser!</b></p>');
     }
     $('table').tablesorter({widgets: ['zebra']});
 
@@ -41,6 +41,7 @@ $(document).ready(function() {
     $('a.fancyzoom').fancyzoom();
 
     $('.toc').tableOfContents(null, {startLevel: 2});
+    $('.toc a').anchorAnimate();
 
     $('form.jqtransform').jqTransform();
 

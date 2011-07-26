@@ -3,6 +3,7 @@ html {
     font-size: 15px;
     position: relative;
     min-height: 100%;
+    word-wrap: break-word;
 }
 
 .main-container {
