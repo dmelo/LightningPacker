@@ -31,6 +31,9 @@ function preparePackageManager() {
 }
 
 $(document).ready(function() {
+    if($('html.ie').length != 0) {
+	$.modal('This site is not meant for IE. Please, get a better browser!');
+    }
     $('table').tablesorter({widgets: ['zebra']});
 
     $('.html').chili();

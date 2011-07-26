@@ -24,9 +24,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.tableofcontents.min.js');
 	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.jqtransform.js');
 	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.form.js');
+	$view->lightningPackerScript()->appendFile('http://simplemodal.googlecode.com/files/jquery.simplemodal-1.4.1.js');
 	$view->lightningPackerScript()->appendFile($domain . '/js/default.js');
 	$view->lightningPackerLink()->appendStylesheet($domain . '/css/810.css');
 	$view->lightningPackerLink()->appendStylesheet($domain . '/css/jqtransform.css');
+	$view->lightningPackerLink()->appendStylesheet($domain . '/css/example-simplemodal.css');
 	$view->lightningPackerLink()->appendStylesheet($domain . '/css/default.css');
 
 	$this->bootstrap('frontController');
