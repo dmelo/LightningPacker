@@ -168,6 +168,8 @@ div.remove-url {
     top: 5px;
     background: url(/img/remove.png) 0 0px no-repeat;
     opacity: 0.25;
+    width: 35px;
+    height: 29px;
 }
 
 div.remove-url:hover {
