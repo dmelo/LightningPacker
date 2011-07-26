@@ -21,12 +21,25 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.ifixpng.js');
 	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.fancyzoom.min.js');
 	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.tableofcontents.min.js');
-	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.placeholder.js');
 	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.jqtransform.js');
+	$view->lightningPackerScript()->appendFile($domain . '/js/jquery.form.js');
 	$view->lightningPackerScript()->appendFile($domain . '/js/default.js');
 	$view->lightningPackerLink()->appendStylesheet($domain . '/css/810.css');
 	$view->lightningPackerLink()->appendStylesheet($domain . '/css/jqtransform.css');
 	$view->lightningPackerLink()->appendStylesheet($domain . '/css/default.css');
+
+	$this->bootstrap('frontController');
+	$front = $this->getResource('frontController');
+	$front->setRequest(new Zend_Controller_Request_Http());
+	$request = $front->getRequest();
+	$ajax = 0;
+	if($request->isXmlHttpRequest() === true) {
+	    $this->bootstrap('Layout');
+	    $layout = $this->getResource('Layout');
+	    $layout->disableLayout();
+	    $ajax = 1;
+	}
+	Zend_Registry::set('ajax', $ajax);
     }
 
     protected function _initRouter()
@@ -40,5 +53,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	$fc->addRoute('index', $routeIndex);
 
     }
+
+
 }
 

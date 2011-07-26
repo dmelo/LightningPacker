@@ -1,17 +1,44 @@
-<h2>Create a New Package</h2>
+<? if(!Zend_Registry::get('ajax')): ?>
+<div class="left">
+    <h2>Create a New Package</h2>
+    <form method="post" class="jqtransform">
 
-<form method="GET" class="jqtransform">
+    <div class="rowElem">
+    <label for="type">Type: </label><select name="type" id="type"><option>CSS</option><option>JS</option></select>
+    </div>
 
-<div class="rowElem">
-<label for="type">Type: </label><select name="type" id="type"><option>CSS</option><option>JS</option></select>
+    <div id="urls">
+
+	<div class="rowElem">
+	<input type="text" class="url" name="url[]" id="url-1" placeholder="URL 1 ..."/>
+
+	<input type="button" class="add" id="add" value="Add" />
+	</div>
+
+    </div>
+
+
+    <div class="rowElem">
+    <input type="submit" value="Pack it!"/>
+    </div>
+    </form>
 </div>
 
-<div class="rowElem">
-<input type="text" class="url" id="url-1" placeholder="URL 1 ..."/>
+<div class="right" id="response">
 </div>
 
-<div class="rowElem">
-<input type="submit" value="Pack it!"/>
+<div class="clear"></div>
+<? else: ?>
+<h2>Package Created</h2>
+
+<p>To refresh the package use the url <a href="<?= $this->build; ?>"><?= $this->build; ?></a></p>
+
+<p>The url that efficiently points to your package is <a href="<?= $this->get; ?>"><?= $this->get; ?></a>.</p>
+
+<p>Now you can just add it on your HTML</p>
+
+<div class="html">
+<?= htmlentities($this->html); ?>
 </div>
 
-</form>
+<? endif; ?>

@@ -21,11 +21,11 @@ echo $this->headMeta() . $this->headTitle('LightningPacker') . $this->headStyle(
 </div>
 
 <ul class="menu grid_3">
-<li><a href="<?= $this->baseUrl() . '/index'; ?>">About</a></li>
-<li><a href="<?= $this->baseUrl() . '/quickstart'; ?>">Quick Start</a></li>
-<li><a href="<?= $this->baseUrl() . '/packagemanager'; ?>">Pack Manager</a></li>
-<li><a href="<?= $this->baseUrl() . '/docs'; ?>">Docs</a></li>
-<li><a href="<?= $this->baseUrl() . '/examples'; ?>">Examples</a></li>
+<li id="menu-index"><a href="<?= $this->baseUrl() . '/index'; ?>">About</a></li>
+<li id="menu-quickstart"><a href="<?= $this->baseUrl() . '/quickstart'; ?>">Quick Start</a></li>
+<li id="menu-packagemanager"><a href="<?= $this->baseUrl() . '/packagemanager'; ?>">Pack Manager</a></li>
+<li id="menu-docs"><a href="<?= $this->baseUrl() . '/docs'; ?>">Docs</a></li>
+<li id="menu-examples"><a href="<?= $this->baseUrl() . '/examples'; ?>">Examples</a></li>
 </ul>
 <div class="push">&nbsp;</div>
 
@@ -45,3 +45,4 @@ echo $this->headMeta() . $this->headTitle('LightningPacker') . $this->headStyle(
 </body>
 
 </html>
+

@@ -1,5 +1,5 @@
 html {
-    font-family: "Lucida Sans Unicode","Lucida Grande",Garuda,sans-serif;
+    font-family: "Trebuchet","Lucida Grande",Garuda,sans-serif;
     font-size: 15px;
     position: relative;
     min-height: 100%;
@@ -9,10 +9,16 @@ html {
 position: static;
 top: 0px;
      margin-bottom: 70px;
+padding: 10px;
+	 padding-top: 0px;
+border: 1px solid black;
+	border-top: 0px;
+	background-color: white;
 }
 
 body {
 margin: 0;
+background-color: black;
 }
 
 .top {
@@ -43,12 +49,11 @@ p.plotline {
 }
 
 ul.menu {
-    margin-top: -40px;
     color:white;
-    border-bottom: 16px solid black;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-bottom: 20px;
+    margin: 0px;
+	    margin-left: -11px;
+	    padding-left: 0px;
+
 }
 
 .menu li a {
@@ -61,15 +66,20 @@ ul.menu {
     list-style-type: none;
     font-size: 20px;
     display: inline;
-    padding: 10px;
     padding-bottom: 0px;
     border: 1px solid black;
-    padding-top: 4px;
+    padding: 2px 10px;
+    margin-right: -6px;
 }
 
 .menu li:hover, .menu li.active, .menu li:hover a, .menu li.active a {
     color:black;
     background-color: white;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.menu li:hover a, .menu li.active a {
+    background-color: transparent;
 }
 
 .footer {
@@ -118,4 +128,32 @@ li li li li { list-style: lower-alpha;}
 
 a img {
     border: 0;
+}
+
+input.url {
+    width: 350px;
+}
+
+.left {
+    width: 405px;
+    float: left;
+}
+
+.right {
+    float: left;
+    width: 405px;
+}
+
+.clear {
+    clear: both;
+}
+
+.html {
+    background-color: #ddd;
+    padding: 2px;
+    border: 1px dashed black;
+}
+
+input[type=text].jqTransformInput {
+    padding-top: 0px !important;
 }

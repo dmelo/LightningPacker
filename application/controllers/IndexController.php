@@ -1,5 +1,7 @@
 <?php
 
+include('LightningPacker.php');
+
 class IndexController extends Zend_Controller_Action
 {
 
@@ -45,7 +47,15 @@ class IndexController extends Zend_Controller_Action
 
     public function packagemanagerAction()
     {
-        // action body
+	$request = $this->getRequest();
+	if($request->isPost()) {
+	    $type = strtolower($request->getPost('type'));
+	    $url = $request->getPost('url');
+	    $this->view->html = lightningPacker($url, $type);
+	    $this->view->build = lightningPacker($url, $type, 1);
+	    $this->view->get = lightningPacker($url, $type, 2);
+	    $this->view->hash = lightningPacker($url, $type, 3);
+	}
     }
 
 
