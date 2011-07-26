@@ -11,7 +11,7 @@ echo $this->headMeta() . $this->headTitle('LightningPacker') . $this->headStyle(
 
 </head>
 <body>
-<img src="/img/full_logo.jpg" style="display: none"/>
+<img src="/img/full_logo.jpg" alt="preload logo" style="display: none"/>
 <div class="top"></div>
 <div class="main-container container container_3">
 
@@ -22,7 +22,6 @@ echo $this->headMeta() . $this->headTitle('LightningPacker') . $this->headStyle(
 
 <ul class="menu grid_3">
 <li id="menu-index"><a href="<?= $this->baseUrl() . '/index'; ?>">About</a></li>
-<li id="menu-quickstart"><a href="<?= $this->baseUrl() . '/quickstart'; ?>">Quick Start</a></li>
 <li id="menu-packagemanager"><a href="<?= $this->baseUrl() . '/packagemanager'; ?>">Pack Manager</a></li>
 <li id="menu-docs"><a href="<?= $this->baseUrl() . '/docs'; ?>">Docs</a></li>
 <li id="menu-examples"><a href="<?= $this->baseUrl() . '/examples'; ?>">Examples</a></li>

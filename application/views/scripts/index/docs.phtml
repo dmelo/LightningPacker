@@ -2,7 +2,7 @@
 
 <h2>Introduction</h2>
 
-<p>LightningPacker aims to help your website to better delivery content to it's users. Instead of make a numerous amount of requisitions per page load do just one for all your javascript external files and another one for your css files.</p>
+<p>LightningPacker aims to help your website to better delivery content to its users. Instead of make an awful amount of requisitions per page load, do just one for all your javascript content and another one for your css files.</p>
 
 <p>LightningPacker takes care of gather all your scripts into just one file, minify and compress it. It also set the better cache policies. Everything needed to achive the optimum on JS and CSS content delivery is here.</p>
 
@@ -32,9 +32,9 @@ foreach($this->table as $row) {
 </tbody>
 </table>
 
-<p>The requisition for a package is made by GET request. The base URL is <span class="highlight">http://lightningpacker.net/packit.php</span> . If you want to pack the jQuery library together with it's TableSort plugin, the LightningPacker url would be <span class="highlight">http://lightningpacker.net/packit.php?type=js&obj[]=http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js&obj[]=http://autobahn.tablesorter.com/jquery.tablesorter.min.js</span>.</p>
+<p>The requisition for a package is made by GET request. The base URL is <span class="highlight">http://lightningpacker.net/packit.php</span> . If you want to pack the jQuery library together with its TableSort plugin, the LightningPacker URL would be <span class="highlight"><?= htmlentities('http://lightningpacker.net/packit.php?type=js&obj[]=http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js&obj[]=http://autobahn.tablesorter.com/jquery.tablesorter.min.js'); ?></span>.</p>
 
-<p>Once the package is done you can use it by provinding the hash parameter together with the script type. The base URL for this operation is <span class="highlight">http://lightningpacker.net/packit.php</span>. See bellow, the list of possible arguments.</p>
+<p>Once the package is done you can use it by provinding the hash parameter together with its type. The base URL for this operation is <span class="highlight">http://lightningpacker.net/get.php</span>. See bellow, the list of possible arguments.</p>
 
 <table>
 <thead>
@@ -57,27 +57,27 @@ foreach($this->table2 as $row) {
 </table>
 
 
-<p>The /packit.php is pure php, with no framework underneath to slow things down.</p>
+<p>The /get.php is pure php, with no framework underneath to slow things down.</p>
 
 
 
 <h2>Source Code</h2>
 
-<p>This is an open source project. <a target="_blank" href="/packit.php.txt">packit.php</a> is the script responsable for creating the packages while <a target="_blank" href="/get.php.txt">get.php</a> retrieves the cached content.</p>
+<p>This is an open source project. <a target="_blank" href="/packit.php.txt">packit.php</a> is the script responsable for creating the packages while <a target="_blank" href="/get.php.txt">get.php</a> retrieves the cached content. Feel free to look around.</p>
 
 <h2>Why Minify?</h2>
 
-<p>The server already uses gzip compression to transmit data. At first it seems like its enought to reduce trafic but there is two problems that Minify attacks and gzip don't.</p>
+<p>The server already uses gzip compression to transmit data. At first it seems like its enought to reduce trafic but there is a few problems that Minify attacks and gzip don't.</p>
 
-<p>First, Minify strips the comments out of the code. Comments are not needed for functionality so there is need to keep it. The second thing is regarding to the compress itself. Minify renames variables and functions in a way to minimize the amount of information needed. It follows the same thinking of the Huffman's algorithm for text compression but it cares about the language's syntax.</p>
+<p>First, Minify get rid of the comments of the code. The second thing is regarding to the compress itself. Minify renames variables and functions in a way to minimize the amount of information needed. It follows the same thinking of the Huffman's algorithm for text compression but it cares about the language's syntax. Moreover, it strips out white chars that are unecessary.</p>
 
-<p>To demonstrate minified and compressed files are smaller than just compressed files have the file <a href="/txt/file_full.txt">file_full.txt"</a> as an example of non-minified file and <a href="/txt/file_minified.txt">file_minified.txt</a> is it's minified version. After apply gzip over this two files it have 13.8KB and 9.4KB, respectively.</p>
+<p>To demonstrate minified and compressed files are smaller than just compressed files, have the file <a href="/txt/file_full.txt">file_full.txt"</a> as an example of non-minified file and <a href="/txt/file_minified.txt">file_minified.txt</a> is it's minified version. After apply gzip over this two files it have 13.8KB and 9.4KB, respectively.</p>
 
-<p>The conclusion is that use Minify will dramatically reduce the amount of data needed to load scripts</p>
+<p>The conclusion is that the use of Minify will reduce the amount of data needed to load scripts</p>
 
 <h2>Cache compressed files</h2>
 
-<p>Usually files are cached text plain and then, when a requisition comes, apache fetchs it from the cache and compress the content on run time. This is bad. Gzip is not very light at the point of letting it run wild like this.</p>
+<p>Usually files are cached text plain and then, when a requisition arrives, Apache fetchs it from the cache and compress the content on run time. This is bad. Gzip is not very light at the point of letting it run wild like this.</p>
 
 <p>Lightning packer store/cache compressed files so that there is no need to run gzip per requisition.</p>
 
@@ -90,7 +90,7 @@ foreach($this->table2 as $row) {
 
 <img src="/img/method-2.png" alt="Figure 2"/>
 
-<p>Compress the file on the fly takes 23 ms for the request to complete while cache the file compressed make request time only 6 ms. The time to transmit the file is the same of both approaches the difference relies on the fact that the served is not using gzip per each request anymore. This is why LightningPacker saves the compressed files.</p>
+<p>Compress the file on the fly takes 23 ms for the request to complete while cache the file compressed make request time only 6 ms. The time to transmit the file is the same of both approaches the difference relies on the fact that the server is not using gzip for each request anymore. This is why LightningPacker saves the compressed files.</p>
 
 <h2>Performance</h2>
 
@@ -104,19 +104,21 @@ foreach($this->table2 as $row) {
 
 <h3>Number of Requests per Page Load</h3>
 
-<p>In order to render the page the browser must download the HTML file, all the CSS and JS files it references and all the objects all those files references. Many JS and CSS scripts will produce many requests on the server. Web developers often uses CDNs to (i) improve loading time of a few scripts and (ii) reduce the server load. But great part of the scripts still hosted by the server's site.</p>
+<p>In order to render the page, the browser must download the HTML file, all the CSS and JS files it references and all the objects that all those files references. Many JS and CSS scripts will produce many requests on the server. Web developers often uses CDNs to (i) improve loading time of a few scripts and (ii) reduce the server load. But great part of the scripts still hosted by the app's server site.</p>
 
-<p>Using LightningPacker 100% of the CSS and JS content used by the site can be hosted at LightningPacker.</p>
+<p>Using LightningPacker, 100% of the CSS and JS content used by the site can be hosted at LightningPacker.</p>
 
 <h3>Total Amount of Data</h3>
 
-<p>LightningPacker uses gzip to compress files. The compression is made after concatenate and minify all scripts to save each bit possible.</p>
+<p>LightningPacker uses gzip to compress files. The compression is made after concatenate and minify all scripts, which leads to a better compression.</p>
 
 <h3>Page Load Time</h3>
+ 
+<p>The browser usually downloads the script in parallel in order to save time so it is expected that LightningPacker increase the time needed to load CSS and JS packages. But in fact it doesn't. Due to all the optimizations performed LightningPacker still able to achive impressive times.</p>
 
-<p>The browser usually downloads the script in parallel in order to save time so it is expected that LightningPacker increase the time needed to load CSS and JS packages. But in fact it doesn't. LightningPacker takes lots of measures to optimize file transfer. When a package is created, it is first compressed and then cached. So that when a requisition arives Apache don't need to compress the file again.</p>
-
-<p>The demo pages on <a href="/exemples">exemples</a> have the following results to load it's content.</p>
+<p>The demo pages on <a href="/examples">examples</a> have the following results to load it's content.</p>
 
 <a href="/img/ewolp.png" class="fancyzoom"><img src="/img/ewolp-small.png" alt="Page load NOT using LightningPacker" /></a>
 <a href="/img/ewlp.png" class="fancyzoom"><img src="/img/ewlp-small.png" alt="Page load using LightningPacker" /></a>
+
+<p>As you can see, the page load using LightningPacker is better than using calling script by script.</p>

@@ -106,7 +106,7 @@ ul.menu {
 
 table {
     border-collapse: collapse;
-border: 1px solid black;
+    border: 1px solid black;
 }
 
 table tr.topic th {
@@ -120,6 +120,10 @@ table .even {
 
 table .odd {
     background-color: white;
+}
+
+table td {
+    padding: 0px 5px 0px 5px;
 }
 
 li { list-style: upper-alpha;}
