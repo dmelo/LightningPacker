@@ -131,7 +131,7 @@ a img {
 }
 
 input.url {
-    width: 350px;
+    width: 380px;
 }
 
 .left {
@@ -156,4 +156,24 @@ input.url {
 
 input[type=text].jqTransformInput {
     padding-top: 0px !important;
+}
+
+.rowElem {
+position: relative
+}
+
+div.remove-url {
+    position: absolute;
+    left: 360px;
+    top: 5px;
+    background: url(/img/remove.png) 0 0px no-repeat;
+    opacity: 0.25;
+}
+
+div.remove-url:hover {
+    cursor: pointer;
+}
+
+.jqTransformInputWrapper {
+float: none !important;
 }

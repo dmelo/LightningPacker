@@ -1,17 +1,32 @@
 function preparePackageManager() {
+    $('div.remove-url').css('display', 'none');
+
     $('button.add').live('click', function(e) {
 	id = $('#urls .rowElem').length + 1;
 	urlEntry = $('#urls .rowElem').first().clone();
 	urlEntry.find('input.url').attr('id', 'url-' + id);
-	urlEntry.find('input.url').attr('placeholder', 'URL ' + id + '...');
+	urlEntry.find('input.url').attr('placeholder', 'http://...');
 	$('#urls').append(urlEntry);
-	$('#urls .add').css('display', 'none');
-	$('#urls .add').last().css('display', 'block');
+	$('div.remove-url').css('display', 'block');
     });
 
     $('form').ajaxForm(function(response) {
 	$('#response').html(response);
 	$('.html').chili();
+    });
+
+    $('div.remove-url').mouseout(function(e) {
+	$(this).animate({opacity: 0.25});
+    }).mouseover(function(e) {
+	$(this).animate({opacity: 1.0});
+    });
+
+    $('div.remove-url').live('click', function(e) {
+	$(this).parent().fadeOut('slow', function() {
+	    $(this).remove();
+	    if($('div.remove-url').length < 2)
+		$('div.remove-url').css('display', 'none');
+	});
     });
 }
 
@@ -41,4 +56,5 @@ $(document).ready(function() {
 	id = 'index';
 
     $('#menu-' + id).addClass('active');
+
 });
