@@ -5,7 +5,7 @@ function preparePackageManager() {
 	id = $('#urls .rowElem').length + 1;
 	urlEntry = $('#urls .rowElem').first().clone();
 	urlEntry.find('input.url').attr('id', 'url-' + id);
-	urlEntry.find('input.url').attr('placeholder', 'http://...');
+	urlEntry.find('input.url').attr('value', '');
 	$('#urls').append(urlEntry);
 	$('div.remove-url').css('display', 'block');
     });
