@@ -15,6 +15,7 @@
           <actionMethod actionName="examples"/>
           <actionMethod actionName="quickstart"/>
           <actionMethod actionName="packagemanager"/>
+          <actionMethod actionName="interact"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="Doc">
@@ -54,6 +55,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="packagemanager"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="interact"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

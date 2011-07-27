@@ -57,6 +57,8 @@ $(document).ready(function() {
 	id = 'docs';
     else if(path.indexOf('/examples') == 0) 
 	id = 'examples';
+    else if(path.indexOf('/interact') == 0) 
+	id = 'interact';
     else
 	id = 'index';
 
