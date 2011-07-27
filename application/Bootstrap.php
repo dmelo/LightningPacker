@@ -13,6 +13,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	$view->addHelperPath('../application/views/helpers/', 'Zend_View_Helper');
 	$view->doctype('HTML5');
 	$view->headMeta()->setCharset('utf-8');
+	$view->headMeta()->appendName('description', 'LightningPacker aims to help your website to better delivery content to its users. Instead of make an awful amount of requisitions per page load, do just one for all your javascript content and another one for your css files.');
+	$view->headMeta()->appendName('keywords', 'minify, online, website, performance, improvement, JS, Javascript, CSS');
 	$view->lightningPackerScript()->appendFile('http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js?a=b&c=d');
 	$view->lightningPackerScript()->appendFile('https://raw.github.com/rafaelp/css_browser_selector/master/css_browser_selector.js');
 	$view->lightningPackerScript()->appendFile('http://autobahn.tablesorter.com/jquery.tablesorter.min.js');
