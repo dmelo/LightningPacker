@@ -1,0 +1,68 @@
+<?php
+
+function lightningpacker_help($path, $arg) {
+    $output = '';
+
+    switch($path) {
+	case 'admin/help#lightningpacker':
+	    $output = '<p>' . t('Integrate Drupal with LightningPacker. Go to <a href="http://lightningpacker.net">http://lightningpacker.net</a> for more information') . '</p>';
+	    break;
+    }
+
+    return $output;
+}
+
+function lightningpacker_perm() {
+    return array('manage lightningpacker settings');
+}
+
+function lightningpacker_block($op = 'list', $delta = 0, $edit = array()){
+    $block = array();
+
+    if('list' === $op) {
+	$block[0]['info'] = t('LightningPacker');
+
+    }
+    elseif('view' == $op) {
+	$block['subject'] = 'LightningPacker';
+	$block['content'] = 'bla bla bla bla bla';
+    }
+
+    return $block;
+}
+
+function lightningpacker_theme_registry_alter(&$theme_registry) {
+  if (isset($theme_registry['page'])) {
+    // If lightningpacker's preprocess function is there already, remove it.
+    if (is_array($theme_registry['page']['preprocess functions']) && $key = array_search('lightningpacker_preprocess_page', $theme_registry['page']['preprocess functions'])) {
+      unset($theme_registry['page']['preprocess functions'][$key]);
+    }
+    // Now tack it on at the end so it runs after everything else.
+    $theme_registry['page']['preprocess functions'][] = 'lightningpacker_preprocess_page';
+  } 
+}
+
+function lightningpacker_preprocess_page(&$variables) {
+    $fd = fopen('/tmp/drupal.txt', 'a');
+    fwrite($fd, var_export($variables, true));
+    fclose($fd);
+
+    if(!empty($variables['scripts'])) {
+	//$variables['scripts']= _lightningpacker_js($variables['scripts']);
+    }
+    if(!empty($variables['styles'])) {
+	$variables['styles'] = _lightningpacker_css($variables['styles']);
+    }
+}
+
+function _lightningpacker_js($variable) {
+    /*
+    $fd = fopen('/tmp/drupal.txt', 'a');
+    fwrite($fd, var_export($variable, true));
+    fclose($fd);
+    */
+}
+
+function _lightningpacker_css($variable) {
+    return '<link rel="stylesheet" type="text/css" href="http://lightningpacker.net/get.php?hash=4fac671b0174bb8ff61fa68d8da1d6ba&type=css" />';
+}
