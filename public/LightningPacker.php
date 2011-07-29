@@ -24,12 +24,38 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>. 
  */
-function lightningPacker($obj, $type, $retType = 0)
+
+function _plainTextParams($params)
 {
+    $ret = '';
+    foreach($params as $key => $value)
+	$ret .= "${key}=\"${value}\" ";
+
+    return $ret;
+}
+
+function getDomain()
+{
+    $domain = '';
+    if(file_exists('domain.txt')) {
+	$fdomain = fopen('domain.txt', 'r');
+	fscanf($fdomain, " %s ", $domain);
+	fclose($fdomain);
+    }
+    else
+	$domain = 'http://lightningpacker.net';
+
+    return $domain;
+}
+
+
+function lightningPacker($obj, $type, $retType = 0, $params = array())
+{
+    $domain = getDomain();
     $hash = md5(implode('', $obj));
     $filename = "/tmp/${hash}-lp";
     if(!file_exists($filename) || 1 === $retType) {
-	$urlBuild = "http://lightningpacker.net/packit.php?type=${type}";
+	$urlBuild = "${domain}/packit.php?type=${type}";
 	foreach($obj as $src)
 	    $urlBuild .= '&obj[]=' . urlencode($src);
 	file_get_contents($urlBuild);
@@ -37,12 +63,24 @@ function lightningPacker($obj, $type, $retType = 0)
 	fclose($fd);
     }
 
-    $urlGet = "http://lightningpacker.net/get.php?hash=${hash}&type=${type}";
+    $urlGet = "${domain}/get.php?hash=${hash}&type=${type}";
     if(0 === $retType) {
-	if('css' === $type) 
-	    $ret = "<link rel=\"stylesheet\" type=\"text/css\" href=\"${urlGet}\" />";
-	elseif('js' === $type)
-	    $ret = "<script type=\"text/javascript\" src=\"${urlGet}\"></script>";
+	if('css' === $type) {
+	    if(!array_key_exists('rel', $params))
+		$params['rel'] = 'stylesheet';
+	    if(!array_key_exists('type', $params))
+		$params['type'] = 'text/css';
+	    $params['href'] = $urlGet;
+	    $plainParams = _plainTextParams($params);
+	    $ret = "<link $plainParams />";
+	}
+	elseif('js' === $type) {
+	    if(!array_key_exists('type', $params))
+		$params['type'] = 'text/javascript';
+	    $params['src'] = $urlGet;
+	    $plainParams = _plainTextParams($params);
+	    $ret = "<script $plainParams></script>";
+	}
     }
     elseif(1 === $retType)
 	$ret = $urlBuild;

@@ -1,5 +1,7 @@
 <?php
 
+include('LightningPacker.php');
+
 function lightningpacker_help($path, $arg) {
     $output = '';
 
@@ -42,27 +44,68 @@ function lightningpacker_theme_registry_alter(&$theme_registry) {
   } 
 }
 
+function _normalizeUrls($urls) {
+    $newUrls = array();
+    foreach($urls as $url) {
+	$parsedUrl = parse_url($url);
+	if(!array_key_exists('host', $parsedUrl))
+	    $newUrls[] = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $url;
+	else
+	    $newUrls[] = $url;
+    }
+
+    return $newUrls;
+}
+
 function lightningpacker_preprocess_page(&$variables) {
+    $t1 = microtime(true);
     $fd = fopen('/tmp/drupal.txt', 'a');
     fwrite($fd, var_export($variables, true));
     fclose($fd);
 
     if(!empty($variables['scripts'])) {
-	//$variables['scripts']= _lightningpacker_js($variables['scripts']);
+	$variables['scripts'] = _lightningpacker_js($variables['scripts']);
     }
-    if(!empty($variables['styles'])) {
-	$variables['styles'] = _lightningpacker_css($variables['styles']);
+    if(!empty($variables['css'])) {
+	$variables['styles'] = _lightningpacker_css($variables['css']);
     }
+
+    $t2 = microtime(true);
+    $t2 -= $t1;
+
+    echo "<!-- LightningPacker defined in ${t2} seconds -->";
 }
 
 function _lightningpacker_js($variable) {
-    /*
-    $fd = fopen('/tmp/drupal.txt', 'a');
-    fwrite($fd, var_export($variable, true));
-    fclose($fd);
-    */
+    $s = $variable;
+    $residue = preg_replace('/<script.*src=[\'"].*[\'"].*<\/script>/U', '', $s);
+
+    $filters = array('/<script.*src[\'"]/', '/[\'"].*<\/script>/');
+    $bag = array();
+
+    while(($pos = stripos($s, 'src="')) !== false) {
+	$s = substr($s, $pos + 4);
+	$pos = strpos($s, $s[0], 1);
+	$url = substr($s, 1, $pos - 1);
+	$bag[] = $url;
+	$s = substr($s, $pos + 1);
+    }
+    $bag = _normalizeUrls($bag);
+
+    return lightningPacker($bag, 'js') . $residue;
 }
 
 function _lightningpacker_css($variable) {
-    return '<link rel="stylesheet" type="text/css" href="http://lightningpacker.net/get.php?hash=4fac671b0174bb8ff61fa68d8da1d6ba&type=css" />';
+    foreach($variable as $media => $set) {
+	$bag = array();
+	foreach($set as $subSet) {
+	    foreach($subSet as $css => $boolean) {
+		$bag[] = $css;
+	    }
+	}
+	$bag = _normalizeUrls($bag);
+	$ret .= lightningPacker($bag, 'css', 0, array('media' => $media));
+    }
+
+    return $ret;
 }

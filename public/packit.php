@@ -54,6 +54,32 @@ function setCache($key, $value, $expire = DEFAULT_EXPIRATION)
     return $ret;
 }
 
+function preprocess_css($content, $url)
+{
+    global $domain;
+    $parsedUrl = parse_url($url);
+    $path = $parsedUrl['path'];
+    while(strlen($path) && $path[strlen($path) - 1] != '/')
+	$path = substr($path, 0, strlen($path) - 1);
+    $baseUrl = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . $path;
+    $content = preg_replace('/url *\( *([\.a-zA-Z0-9])/', 'url(' . $baseUrl . '\1', $content);
+
+	    /*
+    $filename = md5($url) . '---internal.css';
+    $fd = fopen(CACHE_DIR . $filename, 'w');
+    fwrite($fd, $content);
+    fclose($fd);
+    $content = file_get_contents("${domain}/minify/index.php?k=//tmp/${filename}");
+    */
+
+    return $content;
+}
+
+function preprocess_js($content, $url)
+{
+    return $content;
+}
+
 /**
  * Get the content that represents the file set given.
  *
@@ -70,6 +96,8 @@ function getFileSet($fileSet, $type = 'js')
     $ret = '';
     foreach($fileSet as $file) {
 	$fileInfo = file_get_contents($file);
+	$preprocess = "preprocess_${type}";
+	$fileInfo = $preprocess($fileInfo, $file);
 	if('js' === $type)
 	    $ret .= PHP_EOL . ';' . PHP_EOL . $fileInfo;
 	else
