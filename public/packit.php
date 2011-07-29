@@ -62,7 +62,9 @@ function preprocess_css($content, $url)
     while(strlen($path) && $path[strlen($path) - 1] != '/')
 	$path = substr($path, 0, strlen($path) - 1);
     $baseUrl = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . $path;
+    $baseUrlRoot = $parsedUrl['scheme'] . '://' . $parsedUrl['host'];
     $content = preg_replace('/url *\( *([\.a-zA-Z0-9])/', 'url(' . $baseUrl . '\1', $content);
+    $content = preg_replace('/url *\( *\//', 'url(' . $baseUrlRoot . '/\1', $content);
 
 	    /*
     $filename = md5($url) . '---internal.css';
