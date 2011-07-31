@@ -32,7 +32,7 @@ function preparePackageManager() {
 }
 
 $(document).ready(function() {
-    if($('html.ie').length != 0 && !$.cookie('ie-modal')) {
+    if(($('html.ie6').length != 0 || $('html.ie7').length != 0) && !$.cookie('ie-modal')) {
 	$.modal('<p>This site may not be fully functional on IE.</p></p><b>Please, get a better browser!</b></p>');
 	$.cookie('ie-modal', 1);
     }
