@@ -15,22 +15,7 @@ function lightningpacker_help($path, $arg) {
 }
 
 function lightningpacker_perm() {
-    return array('manage lightningpacker settings');
-}
-
-function lightningpacker_block($op = 'list', $delta = 0, $edit = array()){
-    $block = array();
-
-    if('list' === $op) {
-	$block[0]['info'] = t('LightningPacker');
-
-    }
-    elseif('view' == $op) {
-	$block['subject'] = 'LightningPacker';
-	$block['content'] = 'bla bla bla bla bla';
-    }
-
-    return $block;
+    return array('Use LightningPacker');
 }
 
 function lightningpacker_theme_registry_alter(&$theme_registry) {

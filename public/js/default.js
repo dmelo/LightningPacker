@@ -8,6 +8,7 @@ function preparePackageManager() {
 	urlEntry.find('input.url').attr('value', '');
 	$('#urls').append(urlEntry);
 	$('div.remove-url').css('display', 'block');
+	$('div.remove-url').css('opacity', '0.25');
     });
 
     $('form').ajaxForm(function(response) {
