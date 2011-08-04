@@ -32,7 +32,7 @@ $filename = CACHE_DIR . $hash . '.' . $type . '.gz';
 if(file_exists($filename)) {
     if('js' === $type)
 	$header = 'application/javascript';
-    else
+    else 
 	$header = 'text/css';
 
     header("Content-type:  $header");
