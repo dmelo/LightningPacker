@@ -7,24 +7,26 @@ html {
 }
 
 .main-container {
-position: static;
-top: 0px;
-     margin-bottom: 70px;
-padding: 10px;
-	 padding-top: 0px;
-border: 1px solid black;
-	border-top: 0px;
-	background-color: white;
+    position: static;
+    top: 0px;
+    margin-bottom: 70px;
+    padding: 10px;
+    padding-top: 0px;
+    border: 1px solid black;
+    border-top: 0px;
+    background-color: white;
+    border-radius: 7px;
+    -moz-border-radius: 7px;
 }
 
 body {
-margin: 0;
-background-color: black;
+    margin: 0;
+    background-color: black;
 }
 
 .top {
-height: 10px;
-	background-color: black;
+    height: 10px;
+    background-color: black;
 }
 
 span.highlight {
@@ -45,16 +47,13 @@ p.plotline {
     margin-left: 220px;
 }
 
-.inner-container {
-    border: 1px solid black;
-}
+.inner-container { border: 1px solid black; }
 
 ul.menu {
     color:white;
     margin: 0px;
-	    margin-left: -11px;
-	    padding-left: 0px;
-
+    margin-left: -11px;
+    padding-left: 0px;
 }
 
 .menu li a {
@@ -122,22 +121,16 @@ table .odd {
     background-color: white;
 }
 
-table td {
-    padding: 0px 5px 0px 5px;
-}
+table td { padding: 0px 5px 0px 5px; }
 
-li { list-style: upper-alpha;}
-li li { list-style: decimal;}
-li li li { list-style: lower-roman;}
-li li li li { list-style: lower-alpha;}
+li { list-style: upper-alpha; }
+li li { list-style: decimal; }
+li li li { list-style: lower-roman; }
+li li li li { list-style: lower-alpha; }
 
-a img {
-    border: 0;
-}
+a img { border: 0; }
 
-input.url {
-    width: 380px;
-}
+input.url { width: 380px; }
 
 .left {
     width: 405px;
@@ -159,17 +152,11 @@ input.url {
     border: 1px dashed black;
 }
 
-input[type=text].jqTransformInput {
-    padding-top: 0px !important;
-}
+input[type=text].jqTransformInput { padding-top: 0px !important; }
 
-.jqTransformInputInner div input {
-    top: -6px !important;
-}
+.jqTransformInputInner div input { top: -6px !important; }
 
-.rowElem {
-position: relative
-}
+.rowElem { position: relative; }
 
 div.remove-url {
     position: absolute;
@@ -181,18 +168,14 @@ div.remove-url {
     height: 29px;
 }
 
-div.remove-url:hover {
-    cursor: pointer;
-}
+div.remove-url:hover { cursor: pointer; }
 
-.jqTransformInputWrapper {
-float: none !important;
-}
+.jqTransformInputWrapper { float: none !important; }
 
-.simplemodal-container {
-padding: 5px;
-	 background-color: white;
-border: 1px solid black;
+.simplemodal-container { 
+    padding: 5px;
+    background-color: white;
+    border: 1px solid black;
 }
 
 .simplemodal-overlay {

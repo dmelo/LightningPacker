@@ -54,11 +54,6 @@ function lightningpacker_preprocess_page(&$variables) {
     if(!empty($variables['css'])) {
 	$variables['styles'] = _lightningpacker_css($variables['css']);
     }
-
-    $t2 = microtime(true);
-    $t2 -= $t1;
-
-    echo "<!-- LightningPacker defined in ${t2} seconds -->";
 }
 
 function _lightningpacker_js($variable) {

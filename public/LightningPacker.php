@@ -63,7 +63,7 @@ function lightningPacker($obj, $type, $retType = 0, $params = array())
 	fclose($fd);
     }
 
-    $urlGet = "${domain}/get.php?hash=${hash}&type=${type}";
+    $urlGet = htmlentities("${domain}/get.php?hash=${hash}&type=${type}");
     if(0 === $retType) {
 	if('css' === $type) {
 	    if(!array_key_exists('rel', $params))

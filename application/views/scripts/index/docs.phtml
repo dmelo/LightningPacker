@@ -10,7 +10,10 @@
 
 <h2>Usage</h2>
 
-<p>LightningPacker works through an API. This API can be used to pack CSS or Javascript scripts. You must specify the type of pack you want to produce (CSS or Javascript) and the objects to pack. The table bellow shows the full arguments list for creating your packages.</p>
+<p>Use LightningPacker is really easy. But for PHP and Zend it is even easier. On this section is described how to use LightningPacker in a few levels: API, programming language support and other integrations.</p>
+
+<h3>The API</h3>
+<p>LightningPacker works through an API. This API was designed to be as simple as possible and yet allow all the control needed to maintain and distribute packages. The API can be used to pack CSS or Javascript scripts. You must specify the type of pack you want to produce (CSS or Javascript) and the objects to pack. The table bellow shows the full arguments list for creating your packages.</p>
 
 <table>
 <thead>
@@ -60,13 +63,25 @@ foreach($this->table2 as $row) {
 <p>The /get.php is pure php, with no framework underneath to slow things down.</p>
 
 
-<h2>Support for PHP</h2>
+<h3>Support for PHP</h3>
 
 <p>For PHP applications, it's also possible to use the PHP library built to handle the API and output the HTML code that calls the scripts.</p>
 
-<p>Just include the file <a href="/LightningPacker.php.txt">LightningPacker.php</a> and use the function lightningPacker. The functino creates a package the first time a combination of scripts is assembled and, for the further requests, it calls the get.php, mentioned on the previous section.</p>
+<p>Just include the file <a target="_blank" href="/LightningPacker.php.txt">LightningPacker.php</a> and use the function lightningPacker. The function creates a package the first time a combination of scripts is assembled and, for the further requests, it calls the get.php, mentioned on the previous section. To recognize if the package is already created or not it will write a flag file on your "/tmp" path. The name of the file is unique for a combination of URLs. If you want to make lightningPacker rebuild the packages, just delete the files "rm /tmp/*-lp".</p>
 
 <p>The <a href="/examples">Examples</a> section contains an example of how to use this library.</p>
+
+<h3>Zend Framework</h3>
+
+<p>The Zend Framework support comes in form of two helpers scripts: one for CSS and the other for JS. To handle CSS scripts, use the helper <a target="_blank" href="/LightningPackerLink.php.txt">LightningPackerLink</a>. This class extends the Zend helper Zend_View_Helper_HeadLink, which comes by default on the Zend Framework. The usage of the helper is the same as the <a target="_blank" href="http://framework.zend.com/manual/en/zend.view.helpers.html#zend.view.helpers.initial.headlink">usage of Zend_View_Helper_HeadLink</a> but instead of using the headLink() method, you must use lightningPackerLink(). Be careful only not to use URIs, always use URLs. For example, instead of using "/style.css" to reference a file that is on the root of your application, you must use something like "http://example.com/style.css".</p>
+
+<p>The same way there is the helper for CSS, there is also the helper for JS, <a target="_blank" href="/LightningPackerScript.php.txt">LightningPackerScript</a>. This helper extends the Zend_View_Helper_HeadScript and it's usage and limitations is the same as LightningPackerLink. Here is the <a target="_blank" href="http://framework.zend.com/manual/en/zend.view.helpers.html#zend.view.helpers.initial.headscript">usage manual for Zend_View_Helper_HeadScript</a>.</p>
+
+<h3>Drupal</h3>
+
+<p><a target="_blank" href="http://drupal.org">Drupal</a> is a widely used CMS. People can extend their Drupal installations through Modules. There is a module that integrates Drupal with LightningPacker. You can download this module using this link <a href="/lightningpacker-6.x-0.5.tar.gz">lightningpacker-6.x-0.5.tar.gz</a>. This module is <span class="highlight">experimental</a>, which means you should be very careful using it. The drupal page for this module is <a target="_blank" href="http://drupal.org/sandbox/dmelo/1233900">Drupal Lightning Packer</a>.</p>
+
+<p>Here is a live example <a target="_blank" href="http://diogomelo.net">diogomelo.net</a>. If you open it's source code, you will see that it calls the CSS and JS content through LightningPacker.</a>
 
 <h2>Source Code</h2>
 
@@ -78,7 +93,7 @@ foreach($this->table2 as $row) {
 
 <p>First, Minify get rid of the comments of the code. The second thing is regarding to the compress itself. Minify renames variables and functions in a way to minimize the amount of information needed. It follows the same thinking of the Huffman's algorithm for text compression but it cares about the language's syntax. Moreover, it strips out white chars that are unecessary.</p>
 
-<p>To demonstrate minified and compressed files are smaller than just compressed files, have the file <a href="/txt/file_full.txt">file_full.txt"</a> as an example of non-minified file and <a href="/txt/file_minified.txt">file_minified.txt</a> is it's minified version. After apply gzip over this two files it have 13.8KB and 9.4KB, respectively.</p>
+<p>To demonstrate minified and compressed files are smaller than just compressed files, have the file <a target="_blank" href="/txt/file_full.txt">file_full.txt"</a> as an example of non-minified file and <a target="_blank" href="/txt/file_minified.txt">file_minified.txt</a> is it's minified version. After apply gzip over this two files it have 13.8KB and 9.4KB, respectively.</p>
 
 <p>The conclusion is that the use of Minify will reduce the amount of data needed to load scripts</p>
 
