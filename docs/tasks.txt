@@ -1,5 +1,5 @@
-1 Write the "Quick Start"
+1 REFUSED Write the "Quick Start"
 2 DONE Fix the layout problem with the inputs on "Pack Manager"
-3 Revise text
-4 Set google analytics account
-
+3 DONERevise text
+4 DONESet google analytics account
+5 DONE set apache.con to redirect uris like /get/HASH.TYPE to get.sh (properly)
