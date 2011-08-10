@@ -13,7 +13,7 @@ rm -rf ${DOWNLOAD_PATH}/*
 # Packing PHP.
 PACK_PHP=lightningpacker-php-${VERSION}
 mkdir ${DOWNLOAD_PATH}/${PACK_PHP}
-cp ${PUBLIC}/LightningPacker.php ${DOWNLOAD_PATH}/${PACK_PHP}
+cp ${PUBLIC}/LightningPacker.php COPYING ${DOWNLOAD_PATH}/${PACK_PHP}
 cd ${DOWNLOAD_PATH}
 tar -zcvf ${PACK_PHP}.tar.gz ${PACK_PHP}
 cd -
@@ -22,7 +22,7 @@ cd -
 
 PACK_ZEND=lightningpacker-zend-${VERSION}
 mkdir ${DOWNLOAD_PATH}/${PACK_ZEND}
-cp ${ZEND_VIEW}/LightningPackerScript.php ${ZEND_VIEW}/LightningPackerLink.php ${PUBLIC}/LightningPacker.php ${DOWNLOAD_PATH}/${PACK_ZEND}
+cp COPYING ${ZEND_VIEW}/LightningPackerScript.php ${ZEND_VIEW}/LightningPackerLink.php ${PUBLIC}/LightningPacker.php ${DOWNLOAD_PATH}/${PACK_ZEND}
 cd ${DOWNLOAD_PATH}
 tar -zcvf ${PACK_ZEND}.tar.gz ${PACK_ZEND}
 cd -
@@ -30,7 +30,7 @@ cd -
 # Packing Drupal Module
 PACK_DRUPAL=lightningpacker-drupal-${VERSION}
 mkdir ${DOWNLOAD_PATH}/${PACK_DRUPAL}
-cp ${DRUPAL}/lightningpacker.module ${DRUPAL}/lightningpacker.info ${PUBLIC}/LightningPacker.php ${DOWNLOAD_PATH}/${PACK_DRUPAL}/
+cp COPYING ${DRUPAL}/lightningpacker.module ${DRUPAL}/lightningpacker.info ${PUBLIC}/LightningPacker.php ${DOWNLOAD_PATH}/${PACK_DRUPAL}/
 cd ${DOWNLOAD_PATH}
 tar -zcvf ${PACK_DRUPAL}.tar.gz ${PACK_DRUPAL}
 cd -
