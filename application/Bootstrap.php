@@ -8,7 +8,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	$fdomain = fopen('domain.txt', 'r');
 	fscanf($fdomain, " %s ", $domain);
 	fclose($fdomain);
+
+	$fdversion = fopen('../VERSION', 'r');
+	fscanf($fdversion, " %s ", $version);
+	fclose($fdversion);
+
 	Zend_Registry::set('domain', $domain);
+	Zend_Registry::set('version', $version);
+
 	$view = new Zend_View($this->getOptions());
 	$view->addHelperPath('../application/views/helpers/', 'Zend_View_Helper');
 	$view->doctype('HTML5');

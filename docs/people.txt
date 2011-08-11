@@ -1,1 +1,8 @@
+people to contact
+
 http://www.barneyb.com/barneyblog/about/ <-- this guy have a incredible blog about tecknology
+
+
+places to post about
+
+http://stackoverflow.com/questions/4618790/any-good-zend-framework-minify-implementations

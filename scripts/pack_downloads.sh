@@ -19,7 +19,6 @@ tar -zcvf ${PACK_PHP}.tar.gz ${PACK_PHP}
 cd -
 
 # Packing Zend Framework
-
 PACK_ZEND=lightningpacker-zend-${VERSION}
 mkdir ${DOWNLOAD_PATH}/${PACK_ZEND}
 cp COPYING ${ZEND_VIEW}/LightningPackerScript.php ${ZEND_VIEW}/LightningPackerLink.php ${PUBLIC}/LightningPacker.php ${DOWNLOAD_PATH}/${PACK_ZEND}
