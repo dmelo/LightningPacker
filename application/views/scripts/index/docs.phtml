@@ -75,11 +75,12 @@ foreach($this->table2 as $row) {
 
 <p>Just include the file <a target="_blank" href="/LightningPacker.php.txt">LightningPacker.php</a> and use the function lightningPacker. The function creates a package the first time a combination of scripts is assembled and, for the further requests, it calls the get.php, mentioned on the previous section. To recognize if the package is already created or not it will write a flag file on your "/tmp" path. The name of the file is unique for a combination of URLs. If you want to make lightningPacker rebuild the packages, just delete the files "rm /tmp/*-lp".</p>
 
+<p>The <a href="/examples">Examples</a> section contains an example of how to use this library.</p>
+
 <div class="download">
-<a href="/download/lightningpacker-php-<?= $version; ?>.tar.bz2">lightningpacker-php-<?= $version; ?>.tar.bz2</a>
+<?= $this->download(array(array('path' => 'download', 'filename' => "lightningpacker-php-${version}.tar.bz2"))); ?>
 </div>
 
-<p>The <a href="/examples">Examples</a> section contains an example of how to use this library.</p>
 
 <h3>Zend Framework</h3>
 
@@ -88,7 +89,7 @@ foreach($this->table2 as $row) {
 <p>The same way there is the helper for CSS, there is also the helper for JS, <a target="_blank" href="/LightningPackerScript.php.txt">LightningPackerScript</a>. This helper extends the Zend_View_Helper_HeadScript and it's usage and limitations is the same as LightningPackerLink. Here is the <a target="_blank" href="http://framework.zend.com/manual/en/zend.view.helpers.html#zend.view.helpers.initial.headscript">usage manual for Zend_View_Helper_HeadScript</a>.</p>
 
 <div class="download">
-<a href="/download/lightningpacker-zend-<?= $version; ?>.tar.bz2">lightningpacker-zend-<?= $version; ?>.tar.bz2</a>
+<?= $this->download(array(array('path' => 'download', 'filename' => "lightningpacker-zend-${version}.tar.bz2"))); ?>
 </div>
 
 <h3>Drupal</h3>
@@ -98,7 +99,7 @@ foreach($this->table2 as $row) {
 <p>Here is a live example <a target="_blank" href="http://diogomelo.net">diogomelo.net</a>. If you open it's source code, you will see that it calls the CSS and JS content through LightningPacker.</a>
 
 <div class="download">
-<a href="/download/lightningpacker-drupal-<?= $version; ?>.tar.bz2">lightningpacker-drupal-<?= $version; ?>.tar.bz2</a>
+<?= $this->download(array(array('path' => 'download', 'filename' => "lightningpacker-drupal-${version}.tar.bz2"))); ?>
 </div>
 
 <h2>Source Code</h2>
