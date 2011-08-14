@@ -1,8 +1,9 @@
 people to contact
 
-http://www.barneyb.com/barneyblog/about/ <-- this guy have a incredible blog about tecknology
+[X] http://www.barneyb.com/barneyblog/about/ <-- this guy have a incredible blog about tecknology
 
 
 places to post about
 
 http://stackoverflow.com/questions/4618790/any-good-zend-framework-minify-implementations
+[X] http://stackoverflow.com/questions/5334671/minify-css-files-via-git-hook

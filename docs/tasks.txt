@@ -3,3 +3,4 @@
 3 DONERevise text
 4 DONESet google analytics account
 5 DONE set apache.con to redirect uris like /get/HASH.TYPE to get.sh (properly)
+6 Convert the entire svn repo to git.
