@@ -27,6 +27,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	$view->lightningPackerScript()->appendFile('https://raw.github.com/rafaelp/css_browser_selector/master/css_browser_selector.js');
 	$view->lightningPackerScript()->appendFile('http://autobahn.tablesorter.com/jquery.tablesorter.min.js');
 	$view->lightningPackerScript()->appendFile("${domain}/js/chili/jquery.chili-2.2.js");
+	//$view->lightningPackerScript()->appendFile("${domain}/js/jquery-ui-1.8.15.custom.min.js"); sortable
 	$view->lightningPackerScript()->appendFile("${domain}/js/chili/recipes.js");
 	$view->lightningPackerScript()->appendFile("${domain}/js/jquery.cookie.js");
 	$view->lightningPackerScript()->appendFile("${domain}/js/jquery.shadow.js");
