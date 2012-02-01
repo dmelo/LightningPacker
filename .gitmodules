@@ -1,0 +1,6 @@
+[submodule "library/Minify"]
+	path = library/Minify
+	url = https://github.com/mrclay/minify.git
+[submodule "library/Zend"]
+	path = library/Zend
+	url = git@github.com:dmelo/Zend-1.11.git
